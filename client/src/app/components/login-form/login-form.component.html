@@ -1,0 +1,33 @@
+<div class="col-md-6 offset-3">
+  <h3>Login</h3>
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <input type="email" name="email" #email="ngModel" required email placeholder="Correo"
+          [(ngModel)]="user.username" class="form-control" autofocus>
+        </div>
+        <div class="alert alert-danger" *ngIf="email.value === '' && email.dirty">
+          Campo Obligatorio
+      </div>
+      <div class="alert alert-danger" *ngIf="email?.errors?.email && email.touched && email.dirty">
+        Formato de correo invalido.
+      </div>
+        <div class="form-group">
+            <input type="password" name="password" #password="ngModel" required placeholder="Contraseña" [(ngModel)]="user.password" class="form-control">
+        </div>
+        <div class="alert alert-danger" *ngIf="password.invalid && password.dirty">
+          Campo Obligatorio
+      </div>
+        <button class="btn btn-success btn-block" (keyup.enter)="signIn()" (click)="signIn()"
+        [disabled]="!email.valid || !password.valid">
+          Entrar
+        </button>
+        <button class="btn btn-link btn-block" (click)="resetPasword()"
+        [disabled]="!email.valid">
+          Cambiar contraseña
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

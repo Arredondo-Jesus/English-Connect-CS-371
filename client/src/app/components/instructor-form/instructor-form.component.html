@@ -1,0 +1,53 @@
+<div class="col-md-6 offset-3">
+  <h3>Agregar / Editar Instructores</h3>
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <input type="text" name="name" #name="ngModel" placeholder="Nombre del Instructor" pattern="^[a-zA-Z\s]*$"
+          required [(ngModel)]="instructor.name" class="form-control" autofocus>
+        </div>
+        <div class="alert alert-danger" *ngIf="name.value === '' && name.dirty">
+            Campo Obligatorio
+        </div>
+        <div class="alert alert-danger" *ngIf="name.invalid && name.dirty && name.value !== ''">
+            Solo se permiten letras
+        </div>
+        <div class="form-group">
+            <input type="text" name="lastName" #lastName="ngModel" placeholder="Apellido(s) del instructor" pattern="^[a-zA-Z\s]*$"
+            required [(ngModel)]="instructor.last_name" class="form-control" autofocus>
+          </div>
+          <div class="alert alert-danger" *ngIf="lastName.value === '' && lastName.dirty">
+              Campo Obligatorio
+          </div>
+          <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.dirty && lastName.value !== ''">
+              Solo se permiten letras
+          </div>
+        <div class="form-group">
+          <input type="email" name="email" #email="ngModel" required email placeholder="Correo electronico"
+          [(ngModel)]="instructor.email" class="form-control" autofocus>
+        </div>
+        <div class="alert alert-danger" *ngIf="email.value === '' && email.dirty">
+          Campo Obligatorio
+      </div>
+      <div class="alert alert-danger" *ngIf="email?.errors?.email && email.touched && email.dirty">
+          Formato de correo invalido.
+      </div>
+        <div class="form-group">
+            <input type="text" name="Telefono" #phone="ngModel" placeholder="Instructor phone" pattern="[0-9]{10}"
+            required [(ngModel)]="instructor.phone" class="form-control">
+        </div>
+        <div class="alert alert-danger" *ngIf="phone.value === '' && phone.dirty">
+            Campo Obligatorio
+        </div>
+        <div class="alert alert-danger" *ngIf="phone.invalid && phone.dirty && phone.value !== ''">
+            Solo se permiten 10 digitos
+        </div>
+        <button class="btn btn-warning btn-block" (click)="edit ? updateInstructor() : saveNewInstructor()"
+        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid">
+          Guardar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

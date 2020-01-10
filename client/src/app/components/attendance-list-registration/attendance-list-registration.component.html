@@ -1,0 +1,48 @@
+<h3>Registrar Asistencia {{count}}</h3>
+<div class="row">
+    <div class="col-md-12 p-2">
+      <div class="p-2">
+        <form>
+            <div class="row">
+              <div class="col col-md-4">
+                <input type="date" name="date"  [(ngModel)]="attendance.date">
+              </div>
+              <div class="col col-md-4">
+                  <select [(ngModel)]="attendance.lesson" name="attendance">
+                    <option *ngFor="let option of options let i = index" [value]="option.option ">{{option.option}}</option>
+                  </select>
+              </div>
+              <div class="col col-md-4 p-1">
+                  <button class="btn btn-warning btn-block noprint" (click)="edit ? updateAttendance() : saveNewAttendanceList()">Guardar</button>
+              </div>
+            </div>
+
+            <div class="row bg-info p-1">
+              <div class="col text-white text-center">Numero</div>
+              <div class="col text-white text-center">Nombre</div>
+              <div class="col text-white text-center">Asistio</div>
+            </div>
+
+            <div class="row p-1 border border-secondary">
+              <div class="col-md-4"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Name"></div>
+            </div>
+
+            <div id="table" class="row p-1 border border-secondary" *ngFor="let student of filteredStudents let i = index">
+              <div class="col text-center" [class.green]="attendanceValues[i]=='Yes'" [class.red]="attendanceValues[i]=='No'">
+                {{i+1}}
+              </div>
+              <div class="col text-center" [class.green]="attendanceValues[i]=='Yes'" [class.red]="attendanceValues[i]=='No'">
+                {{student.name}} {{student.last_name}}
+              </div>
+              <div class="col text-center">
+                <select class="noprint" name="attendanceOptions[{{i}}]" [(ngModel)]="attendanceValues[i]">
+                  <option  [ngValue] = "values[0].value">Yes</option>
+                  <option  [ngValue] = "values[1].value">No</option>
+                </select>
+              </div>
+            </div>
+
+        </form>
+      </div>
+    </div>
+</div>

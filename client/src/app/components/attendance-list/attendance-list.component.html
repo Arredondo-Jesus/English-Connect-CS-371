@@ -1,0 +1,25 @@
+<h3>Asistencia por fecha {{count}}</h3>
+<div class="row">
+  <div class="col p-0">
+    <div>
+      <div class="col-md-12 p-0">
+          <div class="col col-md-2 float-right p-1">
+              <button [routerLink]="['/attendance/register', course.id]" class="btn btn-warning btn-block">Registrar Asistencia</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row bg-success p-1">
+  <div class="col text-white text-center">Fecha</div>
+  <div class="col text-white text-center">Asistencia</div>
+  <div class="col text-white text-center">Leccion</div>
+  <div class="col text-white text-center">Editar</div>
+</div>
+<div id="table" class="row p-1 border border-secondary" *ngFor="let attendance of attendanceList">
+  <div class="col text-center">{{attendance.date | date : "MM/dd/yyyy"}}</div>
+  <div class="col text-center"><a [routerLink]="['/students/group', course.id, attendance.date | date: 'yyyy-MM-dd']">{{attendance.Yes}} / {{attendance.Total}}</a></div>
+  <div class="col text-center">{{attendance.lesson}}</div>
+  <div [routerLink]="['/attendance/edit', course.id, attendance.date | date : 'yyyy-MM-dd']" class="col text-center"><button class="btn btn-link p-0">Editar</button></div>
+</div>
+

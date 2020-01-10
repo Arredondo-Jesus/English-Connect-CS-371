@@ -1,0 +1,15 @@
+<h3>Lista de asistencia {{count}}</h3>
+<div class="row bg-info p-1">
+  <div class="col text-white text-center">Fecha</div>
+  <div class="col text-white text-center">Leccion</div>
+  <div class="col text-white text-center">Nombre</div>
+  <div class="col text-white text-center">Asistencia</div>
+</div>
+<div id="table" class="row p-1 border border-secondary" *ngFor="let student of students">
+  <div class="col text-center">{{student.date | date : "MM/dd/yyyy"}}</div>
+  <div class="col text-center">{{student.lesson}}</div>
+  <div class="col text-center">{{student.name}} {{student.last_name}}</div>
+  <div class="col text-center" [class.red]="student.attendance_value == 'No'" [class.green]="student.attendance_value == 'Yes'" >
+    {{student.attendance_value}}</div>
+</div>
+

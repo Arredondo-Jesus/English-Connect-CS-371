@@ -1,0 +1,81 @@
+<div class="col-md-6 offset-3">
+  <h3>Agregar / Editar Student</h3>
+  <div class="card">
+    <div class="card-body">
+      <form>
+          <div class="alert alert-success" *ngIf="registration">
+            Se dio de alta exitosamente
+          </div>
+          <div class="form-group">
+            <input type="text" name="name" #name="ngModel"placeholder="Nombre" pattern="^[a-zA-Z\s]*$"
+          required [(ngModel)]="student.name" class="form-control" autofocus>
+        </div>
+        <div class="alert alert-danger" *ngIf="name.value === '' && name.dirty">
+            Campo Obligatorio
+        </div>
+        <div class="alert alert-danger" *ngIf="name.invalid && name.dirty && name.value !== ''">
+            Solo se permiten letras
+        </div>
+        <div class="form-group">
+            <input type="text" name="lastName" #lastName="ngModel" placeholder="Apellido(s)" pattern="^[a-zA-Z\s]*$"
+            required [(ngModel)]="student.last_name" class="form-control" autofocus>
+          </div>
+          <div class="alert alert-danger" *ngIf="lastName.value === '' && lastName.dirty">
+              Campo Obligatorio
+          </div>
+          <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.dirty && lastName.value !== ''">
+              Solo se permiten letras
+          </div>
+          <div class="form-group">
+            <select name="age" class="form-control"
+                    [(ngModel)]="student.age">
+              <option *ngFor="let age of ages let i = index"
+              [ngValue]="age"
+              [selected]="student.age === age && edit === true">{{age}}</option>
+            </select>
+          </div>
+        <div class="form-group">
+            <input type="email" name="email" #email="ngModel" required email placeholder="Correo electronico"
+            [(ngModel)]="student.email" class="form-control" autofocus>
+        </div>
+        <div class="alert alert-danger" *ngIf="email.value === '' && email.dirty">
+            Campo Obligatorio
+        </div>
+        <div class="alert alert-danger" *ngIf="email?.errors?.email && email.touched && email.dirty">
+          Formato de correo no valido.
+        </div>
+        <div class="form-group">
+            <input type="text" name="phone" #phone="ngModel" pattern="[0-9]{10}"
+            required placeholder="Telefono del estudiante" [(ngModel)]="student.phone" class="form-control">
+        </div>
+        <div class="alert alert-danger" *ngIf="phone.value === '' && phone.dirty">
+            Campo Obligatorio
+        </div>
+        <div class="alert alert-danger" *ngIf="phone.invalid && phone.dirty && phone.value !== ''">
+            Solo se permiten 10 digitos
+        </div>
+        <div class="form-group">
+          <select name="ward" class="form-control"
+                  [(ngModel)]="student.ward">
+            <option *ngFor="let ward of wards let i = index"
+            [ngValue]="ward"
+            [selected]="student.ward === ward && edit === true">{{ward}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select name="member" class="form-control"
+                  [(ngModel)]="student.member">
+            <option *ngFor="let member of members let i = index"
+            [ngValue]="member"
+            [selected]="student.member === member && edit === true">{{member}}</option>
+          </select>
+        </div>
+        <button class="btn btn-danger btn-block" (click)="edit ? updateStudent() : saveNewStudent()"
+        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || registration">
+          Guardar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+

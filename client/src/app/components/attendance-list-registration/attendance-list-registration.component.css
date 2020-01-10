@@ -1,0 +1,18 @@
+#table:hover {
+  background-color:#FBF6AC;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+@media print {
+  .noprint {
+     display: none;
+  }
+}
+

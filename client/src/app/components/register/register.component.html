@@ -1,0 +1,26 @@
+<div class="container">
+  <h3 class="text-center">Cursos English Connect Estaca Valle Verde</h3>
+</div>
+<div class="row bg-primary p-1">
+  <div class="col-md-2 text-white text-center">Curso</div>
+  <div class="col-md-1 text-white text-center">Año</div>
+  <div class="col-md-1 text-white text-center">Dia</div>
+  <div class="col-md-1 text-white text-center">Hora</div>
+  <div class="col-md-2 text-white text-center">Edificio</div>
+  <div class="col-md-2 text-white text-center">Numero de estudiantes</div>
+  <div class="col-md-2 text-white text-center">Instructor</div>
+  <div class="col-md-1 text-white text-center">Registrarse</div>
+</div>
+<div *ngFor="let course of filteredCourses">
+  <div id="table" class="row p-1 border border-secondary">
+    <div class="col-md-2 text-center">{{course.name}} {{course.level}}</div>
+    <div class="col-md-1 text-center">{{course.year}}</div>
+    <div class="col-md-1 text-center">{{course.day}}</div>
+    <div class="col-md-1 text-center">{{course.time}}</div>
+    <div class="col-md-2 text-center">{{course.building}}</div>
+    <div [routerLink]="['/students/group', course.id]" class="col-md-2 text-center">{{course.count}}</div>
+    <div class="col-md-2 text-center">{{course.instructorName}} {{course.last_name}}</div>
+    <div [routerLink]="['/student/add', course.id]" class="col-md-1 text-center"><button class="btn btn-link p-0">Registrarse</button></div>
+  </div>
+</div>
+

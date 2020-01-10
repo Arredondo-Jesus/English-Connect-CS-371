@@ -1,0 +1,16 @@
+<h3>Instructores {{count}}</h3>
+
+<div class="row bg-warning p-1">
+  <div class="col-md-3 text-white text-center">Nombre</div>
+  <div class="col-md-3 text-white text-center">Correo</div>
+  <div class="col-md-2 text-white text-center">Telefono</div>
+  <div class="col-md-2 text-white text-center">Editar</div>
+  <div class="col-md-2 text-white text-center">Borrar</div>
+</div>
+<div id="table" class="row border border-secondary p-1" *ngFor="let instructor of instructors">
+  <div class="col-md-3 text-center">{{instructor.name}} {{instructor.last_name}}</div>
+  <div class="col-md-3 text-center">{{instructor.email}}</div>
+  <div class="col-md-2 text-center">{{instructor.phone}}</div>
+  <div [routerLink]="['/instructor/edit', instructor.id]" class="col text-center"><button class="btn btn-link p-0">Editar</button> </div>
+  <div class="col text-center"><button class="p-0 btn btn-link" (click)="deleteInstructor(instructor.id)">Borrar</button></div>
+</div>
