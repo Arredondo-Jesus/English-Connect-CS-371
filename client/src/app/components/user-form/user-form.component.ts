@@ -38,7 +38,7 @@ export class UserFormComponent implements OnInit {
   user: User = {
     uid: '',
     email: '',
-    role: 2,
+    role: 0,
     roleName: '',
   };
 

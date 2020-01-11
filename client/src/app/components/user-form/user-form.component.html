@@ -17,13 +17,13 @@
             <input type="password" name="password" placeholder="Contraseña" *ngIf="edit == false" [(ngModel)]="fireBaseUser.password" class="form-control">
         </div>
         <div class="form-group">
-          <select name="rol" class="form-control" [(ngModel)]="user.role" placeholder="Rol">
-            <option [ngValue]="rols[0]" [selected]="user.role && edit === true">Admin</option>
-            <option [ngValue]="rols[1]" [selected]="user.role && edit === true">Instructor</option>
+          <select name="rol" class="form-control" #rol="ngModel" [(ngModel)]="user.role" placeholder="Rol">
+            <option [ngValue]="rols[0]">Admin</option>
+            <option [ngValue]="rols[1]">Instructor</option>
           </select>
       </div>
         <button class="btn btn-primary btn-block form-control" (click)="edit ? updateUser() : signUp()"
-        [disabled]="!email.valid">
+        [disabled]="!email.valid || !rol.dirty">
           Guardar
         </button>
         <button class="btn btn-danger btn-block form-control" *ngIf="edit == true" (click)="disableUser(fireBaseUser.disabled)">

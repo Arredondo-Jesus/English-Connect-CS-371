@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'AIzaSyBJqpLcAIwWlrQ4KhNYlhEbiztmkC5PQJM',
-    authDomain: 'english-connect-64693.firebaseapp.com',
-    databaseURL: 'https://english-connect-64693.firebaseio.com',
-    projectId: 'english-connect-64693',
-    storageBucket: 'english-connect-64693.appspot.com',
-    messagingSenderId: '1050093135211',
-    appId: '1:1050093135211:web:4abd33dd08e57c3090982e'
-  }
+    apiKey: 'AIzaSyCFpioZdVFTRLp4qDfZvAP5ZoRFsqh-qRY',
+  authDomain: 'english-connect-valle.firebaseapp.com',
+  databaseURL: 'https://english-connect-valle.firebaseio.com',
+  projectId: 'english-connect-valle',
+  storageBucket: 'english-connect-valle.appspot.com',
+  messagingSenderId: '1008276701949',
+  appId: '1:1008276701949:web:5af8a8fd63e924b5d33494',
+  },
 };

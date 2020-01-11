@@ -6,23 +6,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.environment = {
     production: true,
     firebase: {
-        apiKey: 'AIzaSyBJqpLcAIwWlrQ4KhNYlhEbiztmkC5PQJM',
-        authDomain: 'english-connect-64693.firebaseapp.com',
-        databaseURL: 'https://english-connect-64693.firebaseio.com',
-        projectId: 'english-connect-64693',
-        storageBucket: 'english-connect-64693.appspot.com',
-        messagingSenderId: '1050093135211',
-        appId: '1:1050093135211:web:4abd33dd08e57c3090982e',
-        type: "service_account",
-        project_id: "english-connect-64693",
-        private_key_id: "57956a00e9c2a21419cdfc8855016c3c2955a244",
-        private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDArzGlvwnRCCqb\n4XG9C9U3o7lO4BFFtWTnuW15bXt2KQYVg5oM6xRE8bugW53o7iU9Mk+Hg9Ym1Uko\nZ0aN8GCS5TUk/7Z30HQ3ITtvWeNiGtqPCsKnxA8X8gOeDVCMiORv8Q7FeNrdspLv\nAfo8luNGIUUMUxJaKznz1Wi6WgDLHMQjE77DbK6hp1h1BkCVX37nHPxdHiDI9kFg\ndctY+mviag7xiojPCaWdFuvv5Foo7D0HzDrv99JC+uNrEpa9x4eQTD/EgeGLTyLo\nBxQmQt806KRZczT2J2A1U922TY3qrzNYbmLVcS9R60inVQEgMcaivu/8CnxefLiJ\n0j8x9LkpAgMBAAECggEAJdR/t935DGxBCVfK3+Xp18GySTUezwPdKs2yG6wOGFXX\nlvO+lBi3Yw3e244BQ9E1yH0PNjkBG6C2e1NDe+yc2VpdA8WcyotHtec1ZxhL12AU\nVw8yxoNsvzPJ2AcfMGhUCVJXpxeiSPKdfIVz3t91AbjYeKH6sW9ZMnFM3YF8NGQ6\n3R1W0ZA0MmG1A4ff5CVPtBjTXz9Q47WDVDflbmSqcNBf6OCBjPa8qLzI9i4Glorf\nZ1quZ5UIbQ/dFcvOW/vd0NHPklEng02kNqrNrDJ9hLJKOXaSxvzUPmzbvP8cE2rX\nJrt9mKmXGzwtxPSVBpBft3Q3qvDK1ztXhAticn0DfQKBgQDziUDMz4LAX3GMeawC\nhyXf4Yy4gCXZKU5mI2Uutt2QhuZ+kFmaCWn/dgx+DPNITtpIk16Kad0zqWDbrrrW\nq1vPI0+Qm8Zo0ZkTrq/rlImlybbvDPIm7LJ07Wda7rQzyrk8HMykt7PpUIIQxpKY\np6azVwbU5RCOUbPKvPgxoDFSbwKBgQDKi7GkCuSfjxHbZXqvJKngaUp7IeUyagdB\nm6pLX3CU+e2skSvzQlM8jkWBi1co9aL6FLAbUc8YPcvi5TYGEdv0+Z5PdR4yvhrm\nutKGoweZiCqWST7G5ekgTGDl+7qtGZiGA5y465kbfdWC5w80260mweHJBCVJjO4y\n6SVKE0GZ5wKBgBNClJReCOor4jAI41ij1ZP6I4Xn5JZjFOcw/2yNW8J1WL9DrUJo\nYjCo5l4FqivayJqaxQxPSQYv7BATpoUZsj4UfdNi7nMVuHR9CT6pVaV96XDIZlI7\nv/VNXTIs1KWP78xYPrr8KEdYbaDkA239PErMpCasIv4OahirjzllgOETAoGAGR66\nKV4wfJmB3XP4g0BI0Uw9sIfDpT0BKWHk/PQZQmC82WonyUOwjxIWDLr7VFkinWFz\nde/vf1Iqtzk2Ogp8/ST4PWKJHEH3lCYXdhtCFgiNP5ZV8tUQ1LCkU+GkhVNnVzeb\neFO/6Wjx0gpWGHgmQWhKWGPrO/P+ltHTjhxVRoECgYB992ZHjsPgwfskbgMVTVTm\nWz3UrLfhnIX1+Xlc2+jirn5u18ZVwT96mRYqP7MjOZQqYa8l79Ojt5socm3sBYlY\nK0lr8Rh4OLjg0vnPyKvdb2H7ACoAXOwT88mnSEUs5X6+B86fst46U/YrYq1DsM3L\npnzmwl23L+FF8DP8KiKyPQ==\n-----END PRIVATE KEY-----\n",
-        client_email: "firebase-adminsdk-b65by@english-connect-64693.iam.gserviceaccount.com",
-        client_id: "102592256541860648731",
-        auth_uri: "https://accounts.google.com/o/oauth2/auth",
-        token_uri: "https://oauth2.googleapis.com/token",
-        auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-        client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-b65by%40english-connect-64693.iam.gserviceaccount.com"
+        apiKey: 'AIzaSyCFpioZdVFTRLp4qDfZvAP5ZoRFsqh-qRY',
+        authDomain: 'english-connect-valle.firebaseapp.com',
+        databaseURL: 'https://english-connect-valle.firebaseio.com',
+        projectId: 'english-connect-valle',
+        storageBucket: 'english-connect-valle.appspot.com',
+        messagingSenderId: '1008276701949',
+        appId: '1:1008276701949:web:5af8a8fd63e924b5d33494',
+        type: 'service_account',
+        project_id: 'english-connect-valle',
+        private_key_id: 'ac4c96038336e23ff784569d28a641efe8c637a2',
+        private_key: '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC2iTNfBQvxMI+a\nxbMaI5mpwoFWsDwHGPC5m/LkOAIezKXHwxs+R3ZoyqHA6onjj6GHO8zb6BzOfW+b\nmfZCk9UUPG2WriwhsbFafD+GOiPJHFwjo344By5JKbqZ2H70KR8OrIaMHSbQlK9U\nL6LI3L9OE+qjzyOb4BbFOQ1xHz5JKQIMPRwY8570u7JsFdcwT3u/sEwiBoTknKWN\n12utjtH5VTRqDQFN32/RuDWBzOd7LNxQxLvoVc3Jk2X2EXcwnxftfo1SDdW3poOV\n6e0V5svOfMSM3ThAlQJ/a3r59Q6ugTqIRTxbjpa4RhSMXh4stYvb02mME+uJ7SDi\nXR6n3FT7AgMBAAECggEAISzIaGGbbQd9YgzCY2LK/755EU9QaZ3PynwcZfwD7qMV\nEjxUjDoivCLvyQcXboNhQRnOPr1t1t2XVjliN3F0zYu6AyO+o5UO/boNNZEFhfyg\nhl2lh/tOHz/1SRa+5BNBMMKMZZS6xDfxsaRCuqzcHA2knIb+GstceBXJaqDaCiOZ\n3rwFiGQ2b816ByPojiN2Cde3CwBXFBbPcXiTqCsryV97fujBt44jKTCvSocpLKO+\nHZRJpUOYHkRt53P9Pppa9Axh6QksGBm82xNZXeimPuDZpAk7EKtOli7uEPqYxkNl\nDiUwzndaHp/Omnwqv12tyLo6LIIIbXVy1xCQ8BhCcQKBgQDvVxO0qrQO98E7zRa4\nDQR0vQ8oDd46bDcR1lCzyf5+reUfutXthpxLDeH3TGwZumW+TtNkWby5pTHVj6dA\n0fnF6FYLh4VjY4jNSQpnSNWpalcpWETeHh20hVwwXsaTitve86CaH6i3gNzclKVl\nsp99WnlsM4W6K1Xn84LBfSjdiQKBgQDDPeaezv4ZaZVB+NvsTni9FxiJGce+ahXD\nVrj3MMT2SK5Tm1Q1PGEcT7GF51mLqsriOrfHljkE+KGx2GSm+psOcDTSvsvS0zpM\nY1miiAKqmc/s0NmflG8cQOkB63FUJ4hQb5AWc9yTEXTXX35R4W+BlxSXed1fnH4R\nyKFSeIAhYwKBgQCZzpe3TswPol/nklC7ToJCkwyebOsXGFv7doK+R1zpA89uqJ65\n2fuur+k7Bz2g+wxPVFC8+H4zv1lbKMoO+eFNsZU6K4ko6doMMpgg78l+6fvBchwv\nsaLdU6Z+3yk1v9K0YFQhN58w7fsBNfVkeXnNEMtfIW0ayqaWPQMWXNxaIQKBgDAm\nvRDflfVof8IkgQC3nblsz8VIUWXZvgJOChIUug7PgAbooQz8FisoUGzo0MHMXnsK\n5jZYCzn5o887wh8YYVNfQvfSzGvzYkZinkGib53pj0klfPaJYhnCvHSXv3x0v36u\n9QdEjdrLjFhtmbbR9XEtdIujJ4CkFMeIBplTVK5nAoGAIrQeF40VWSd/SKoDds4X\nkpaiJstkYMpQg8ObxZz6PgPgSr9VRTWphXUIwBAny2iyCTZDCzfQNq8npTG9pfTK\nGBIPF1CT92C1wW4hVKPpRZlzzA3bK4l1BBMwc7/bEGgcOuN2yHpwTMOyf09e7Ux2\n5utVTMPrpudVSgNB7tENt4w=\n-----END PRIVATE KEY-----\n',
+        client_email: 'firebase-adminsdk-pu4xp@english-connect-valle.iam.gserviceaccount.com',
+        client_id: '111983309491964159230',
+        auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+        token_uri: 'https://oauth2.googleapis.com/token',
+        auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+        client_x509_cert_url: 'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-pu4xp%40english-connect-valle.iam.gserviceaccount.com'
     }
 };
 /*

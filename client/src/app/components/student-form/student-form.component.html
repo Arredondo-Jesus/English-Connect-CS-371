@@ -27,7 +27,7 @@
               Solo se permiten letras
           </div>
           <div class="form-group">
-            <select name="age" class="form-control"
+            <select name="age" class="form-control" #age="ngModel"
                     [(ngModel)]="student.age">
               <option *ngFor="let age of ages let i = index"
               [ngValue]="age"
@@ -55,7 +55,7 @@
             Solo se permiten 10 digitos
         </div>
         <div class="form-group">
-          <select name="ward" class="form-control"
+          <select name="ward" class="form-control" #ward="ngModel"
                   [(ngModel)]="student.ward">
             <option *ngFor="let ward of wards let i = index"
             [ngValue]="ward"
@@ -63,7 +63,7 @@
           </select>
         </div>
         <div class="form-group">
-          <select name="member" class="form-control"
+          <select name="member" class="form-control" #member="ngModel"
                   [(ngModel)]="student.member">
             <option *ngFor="let member of members let i = index"
             [ngValue]="member"
@@ -71,7 +71,8 @@
           </select>
         </div>
         <button class="btn btn-danger btn-block" (click)="edit ? updateStudent() : saveNewStudent()"
-        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || registration">
+        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || registration || !age.dirty
+                  || !ward.dirty || !member.dirty">
           Guardar
         </button>
       </form>

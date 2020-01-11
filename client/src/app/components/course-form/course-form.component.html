@@ -63,15 +63,14 @@
           </select>
         </div>
         <div class="form-group">
-          <select name="assigned" class="form-control" [(ngModel)]="course.instructor_id" name="instructorList">
+          <select name="assigned" class="form-control" #instructor="ngModel" [(ngModel)]="course.instructor_id" name="instructorList">
             <option *ngFor="let instructor of instructors"
                     [selected]="instructors.id === course.instructor_id && edit === true"
-                    [selected]="instructors[0].id && edit === false"
                     [ngValue]="instructor.id">{{instructor.name}} {{instructor.last_name}}</option>
           </select>
         </div>
         <button class="btn btn-primary btn-block" (click)="edit ? updateCourse() : saveNewCourse()"
-                [disabled]="!name.valid || !level.valid || !year.valid || !day.valid || !time.valid" >
+                [disabled]="!name.valid || !level.valid || !year.valid || !day.valid || !time.valid || !instructor.dirty" >
           Guardar
         </button>
       </form>
