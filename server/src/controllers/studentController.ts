@@ -4,7 +4,31 @@ import pool from '../database';
 class StudentController {
 
     public async list (req: Request, res: Response){
-        const students = await pool.query("SELECT * FROM student s WHERE s.status = 'active'");
+        const students = await pool.query(`SELECT	s.name,
+                                                    s.last_name,
+                                                    s.phone,
+                                                    s.email,
+                                                    s.age,
+                                                    s.member,
+                                                    s.ward,
+                                                    s.status,
+                                                    SUM(CASE
+                                                    WHEN a.attendance_value = 'Yes' THEN 1
+                                                    ELSE 0
+                                                END) AS 'yes',
+                                                SUM(CASE
+                                                    WHEN a.attendance_value = 'No' THEN 1
+                                                    ELSE 0
+                                                END) AS 'no',
+                                                SUM(CASE
+                                                    WHEN a.attendance_value = 'No'  OR a.attendance_value = 'Yes' THEN 1
+                                                    ELSE 0
+                                                END) AS 'total'
+                                            FROM student s
+                                            JOIN attendance a ON s.id = a.student_id
+                                            WHERE s.status = 'active' 
+                                            GROUP BY a.student_id  
+                                            ORDER BY Total  DESC`);
         res.json(students);
     }
 
@@ -28,7 +52,7 @@ class StudentController {
                 s.last_name, 
                 a.attendance_value,
                 a.date,
-                a.lesson
+                a.lesson,
         FROM attendance a 
         JOIN student s ON a.student_id = s.id
         JOIN course c ON s.course_id = c.id
@@ -43,7 +67,33 @@ class StudentController {
     public async getByCourseDetails (req: Request, res: Response): Promise <void>{
         const { id } = req.params;
 
-        const query = `SELECT * FROM student s WHERE s.status = 'active' AND s.course_id = ?`;
+        const query = `SELECT	s.name,
+                        s.last_name,
+                        s.phone,
+                        s.email,
+                        s.age,
+                        s.member,
+                        s.ward,
+                        s.status,
+                        s.course_id,
+                        SUM(CASE
+                        WHEN a.attendance_value = 'Yes' THEN 1
+                        ELSE 0
+                    END) AS 'yes',
+                    SUM(CASE
+                        WHEN a.attendance_value = 'No' THEN 1
+                        ELSE 0
+                    END) AS 'no',
+                    SUM(CASE
+                        WHEN a.attendance_value = 'No'  OR a.attendance_value = 'Yes' THEN 1
+                        ELSE 0
+                    END) AS 'total'
+                FROM student s
+                JOIN attendance a ON s.id = a.student_id
+                WHERE s.course_id = ?
+                AND s.status = 'active'
+                GROUP BY a.student_id  
+                ORDER BY Total  DESC`;
         const students = await pool.query(query, [id]);
         res.json(students);
     }

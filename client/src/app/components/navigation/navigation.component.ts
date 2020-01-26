@@ -42,7 +42,6 @@ export class NavigationComponent implements OnInit {
       this.userService.getUserPermissions(email).subscribe(
         res => {
           this.permissions = res;
-          console.log(res);
         },
         err => console.log(err)
       );

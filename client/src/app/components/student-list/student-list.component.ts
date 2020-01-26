@@ -23,7 +23,8 @@ export class StudentListComponent implements OnInit {
 
   student: Student = {
     id: 0,
-    status: 'inactive'
+    status: 'inactive',
+    percentage: 0
   };
 
   course: Course = {
@@ -176,7 +177,6 @@ export class StudentListComponent implements OnInit {
     this.student.id = id;
     this.studentsService.deleteStudent(this.student.id, this.student).subscribe(
       res => {
-        console.log(res);
         if (params.id) {
           this.getStudentByGroup();
         } else {
@@ -190,7 +190,6 @@ export class StudentListComponent implements OnInit {
   getPermissions(email: string) {
     this.userService.getUserPermissions(email).subscribe(
       res => {
-        console.log(res);
         this.permissions = res;
       },
       err => console.log(err)

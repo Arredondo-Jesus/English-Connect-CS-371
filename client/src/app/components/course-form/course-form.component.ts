@@ -37,7 +37,6 @@ export class CourseFormComponent implements OnInit {
   ngOnInit() {
    this.getCourse();
    this.getIntructors();
-   console.log(this.buildings);
   }
 
   getCourse() {
@@ -46,7 +45,6 @@ export class CourseFormComponent implements OnInit {
       this.courseService.getCourse(params.id)
         .subscribe(
           res => {
-            console.log(res);
             this.course = res;
             this.edit = true;
           },
@@ -63,7 +61,6 @@ export class CourseFormComponent implements OnInit {
     this.courseService.saveCourse(this.course)
       .subscribe(
         res => {
-          console.log(this.course);
           this.router.navigate(['courses']);
           this.edit = false;
         },
@@ -79,7 +76,6 @@ export class CourseFormComponent implements OnInit {
     this.courseService.updateCourse(this.course.id, this.course)
         .subscribe(
           res => {
-            console.log(res);
             this.edit = true;
             this.router.navigate(['courses']);
           },

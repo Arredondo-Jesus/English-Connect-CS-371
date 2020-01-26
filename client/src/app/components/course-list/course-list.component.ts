@@ -157,7 +157,6 @@ export class CourseListComponent implements OnInit {
       res => {
         this.courses = res;
         this.filteredCourses = this.courses;
-        console.log(res);
         this.count = this.courses.length;
       },
       err => console.log(err)
@@ -170,7 +169,6 @@ export class CourseListComponent implements OnInit {
     this.course.id = id;
     this.coursesService.deleteCourse(this.course.id, this.course).subscribe(
       res =>  {
-        console.log(res);
         this.getCourses();
       },
       err => console.log(err)
@@ -184,7 +182,6 @@ export class CourseListComponent implements OnInit {
         if (this.permissions[0].name === 'admin') {
           this.admin = true;
         }
-        console.log(res);
       },
       err => console.log(err)
     );

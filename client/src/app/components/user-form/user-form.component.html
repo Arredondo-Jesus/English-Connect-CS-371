@@ -26,13 +26,13 @@
         [disabled]="!email.valid || !rol.dirty">
           Guardar
         </button>
-        <button class="btn btn-danger btn-block form-control" *ngIf="edit == true" (click)="disableUser(fireBaseUser.disabled)">
+        <button disabled class="btn btn-danger btn-block form-control" *ngIf="edit == true" (click)="disableUser(fireBaseUser.disabled)">
             {{ fireBaseUser.disabled == true ? 'Activar Account' : 'Deshabilitar Cuenta' }}
         </button>
-        <button class="btn btn-info btn-block form-control" *ngIf="edit == true" (click)="resetPasword()">
+        <button disabled class="btn btn-info btn-block form-control" *ngIf="edit == true" (click)="resetPasword()">
             Cambiar contraseña
         </button>
-        <button class="btn btn-warning btn-block form-control" *ngIf="edit == true" (click)="deleteFirebaseUser(); deleteUserDB()">
+        <button disabled class="btn btn-warning btn-block form-control" *ngIf="edit == true" (click)="deleteFirebaseUser(); deleteUserDB()">
             Borrar usuario
         </button>
       </form>

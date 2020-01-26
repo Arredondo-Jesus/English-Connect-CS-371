@@ -12,4 +12,8 @@ export interface Student {
   status?: string;
   course_id?: number;
   registration?: boolean;
+  percentage?: number;
+  yes?: number;
+  no?: number;
+  total?: number;
 }
