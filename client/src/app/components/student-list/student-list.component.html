@@ -27,7 +27,7 @@
   <div class="col-md-1 text-center">{{student.phone}}</div>
   <div class="col-md-1 text-center">{{student.member}}</div>
   <div class="col-md-1 text-center">{{student.ward}}</div>
-  <div class="col-md-1 text-center">{{(student.yes / student.total) * 100}}{{'%'}}</div>
+  <div class="col-md-1 text-center">{{(student.yes / student.total) * 100 | number: '1.0-0'}}{{'%'}} {{student.yes}}{{'/'}}{{student.total}} </div>
   <div class="col-md-1 text-center">{{student.status}}</div>
   <div [routerLink]="['/student/edit', student.id]" class="col-md-1 text-center"><button class="btn btn-link p-0">Editar</button></div>
   <div class="col-md-1 text-center"><button class="btn btn-link p-0" (click)="deleteStudent(student.id)">Borrar</button></div>

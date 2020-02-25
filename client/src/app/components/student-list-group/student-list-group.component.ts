@@ -30,7 +30,7 @@ export class StudentListGroupComponent implements OnInit {
   attendance: Attendance = {
     id: 0,
     date: new Date(),
-    attendance_value: '',
+    attendance_value: 0,
     lesson: 0
   };
 

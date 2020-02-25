@@ -28,20 +28,16 @@
             </div>
 
             <div id="table" class="row p-1 border border-secondary" *ngFor="let student of filteredStudents let i = index">
-              <div class="col text-center" [class.green]="attendanceValues[i]=='Yes'" [class.red]="attendanceValues[i]=='No'">
+              <div class="col text-center" [class.green]="attendanceValues[i]" [class.red]="!attendanceValues[i]">
                 {{i+1}}
               </div>
-              <div class="col text-center" [class.green]="attendanceValues[i]=='Yes'" [class.red]="attendanceValues[i]=='No'">
+              <div class="col text-center" [class.green]="attendanceValues[i]" [class.red]="!attendanceValues[i]">
                 {{student.name}} {{student.last_name}}
               </div>
-              <div class="col text-center">
-                <select class="noprint" name="attendanceOptions[{{i}}]" [(ngModel)]="attendanceValues[i]">
-                  <option  [ngValue] = "values[0].value">Yes</option>
-                  <option  [ngValue] = "values[1].value">No</option>
-                </select>
+                <div class="col text-center">
+                  <input type="checkbox" name="attendanceOptions[{{i}}]" [(ngModel)]="attendanceValues[i]">
+                </div>
               </div>
-            </div>
-
         </form>
       </div>
     </div>

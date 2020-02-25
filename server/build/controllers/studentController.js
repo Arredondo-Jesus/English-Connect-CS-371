@@ -25,15 +25,15 @@ class StudentController {
                                                     s.ward,
                                                     s.status,
                                                     SUM(CASE
-                                                    WHEN a.attendance_value = 'Yes' THEN 1
+                                                    WHEN a.attendance_value = 1 THEN 1
                                                     ELSE 0
                                                 END) AS 'yes',
                                                 SUM(CASE
-                                                    WHEN a.attendance_value = 'No' THEN 1
+                                                    WHEN a.attendance_value = 0 THEN 1
                                                     ELSE 0
                                                 END) AS 'no',
                                                 SUM(CASE
-                                                    WHEN a.attendance_value = 'No'  OR a.attendance_value = 'Yes' THEN 1
+                                                    WHEN a.attendance_value = 0  OR a.attendance_value = 1 THEN 1
                                                     ELSE 0
                                                 END) AS 'total'
                                             FROM student s
@@ -63,7 +63,7 @@ class StudentController {
                 s.last_name, 
                 a.attendance_value,
                 a.date,
-                a.lesson,
+                a.lesson
         FROM attendance a 
         JOIN student s ON a.student_id = s.id
         JOIN course c ON s.course_id = c.id

@@ -40,9 +40,10 @@ class AttendanceController {
 
     public async listByDate (req: Request, res: Response){
         const { id } = req.params;
-        const query = `SELECT a.date, 
+        const query = `SELECT 
+                            a.date, 
                             COUNT(a.student_id) AS 'Total',
-                            COUNT(CASE WHEN a.attendance_value = 'Yes' THEN 1 END) AS 'Yes',
+                            COUNT(CASE WHEN a.attendance_value = 1 THEN 1 END) AS 'Yes',
                             c.id,
                             c.name,
                             c.level,

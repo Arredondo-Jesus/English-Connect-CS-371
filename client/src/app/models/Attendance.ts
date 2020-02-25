@@ -4,7 +4,7 @@ export interface Attendance {
   total?: number;
   yes?: number;
   lesson?: number;
-  attendance_value?: string;
+  attendance_value?: number;
   created_at?: Date;
   modified_on?: Date;
   status?: string;

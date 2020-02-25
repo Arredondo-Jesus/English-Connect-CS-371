@@ -136,6 +136,21 @@ export class StudentListComponent implements OnInit {
       student.status.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
+  get seachPercentage(): string {
+    return this.searchValue;
+  }
+
+  set searchPercentage(value: string) {
+    this.searchValue = value;
+    this.filteredStudents = this.filterPercentage(value);
+    this.count = this.filteredStudents.length;
+  }
+
+  filterPercentage(searchString: string) {
+    return this.students.filter(student =>
+      student.percentage.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
+
   constructor(private studentsService: StudentsService, private router: Router, private activatedRoute: ActivatedRoute,
               private userService: UserService, private afAuth: AngularFireAuth) { }
 

@@ -30,7 +30,7 @@ export class AttendanceListRegistrationComponent implements OnInit {
   attendance: Attendance  = {
     id: 0,
     date: new Date(),
-    attendance_value: '',
+    attendance_value: 0,
     lesson: 0,
     student_id: 0,
     status: 'active'
@@ -104,7 +104,7 @@ export class AttendanceListRegistrationComponent implements OnInit {
           this.attendance.lesson = 1;
           this.count = this.studentList.length;
           for (const student of this.studentList) {
-            this.attendanceValues.push('Yes');
+            this.attendanceValues.push(1);
           }
         },
         err => console.log(err)
