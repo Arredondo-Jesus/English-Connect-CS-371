@@ -42,7 +42,7 @@ export class StudentListComponent implements OnInit {
   }
 
   filterName(searchString: string) {
-    return this.students.filter(student =>
+    return this.filteredStudents.filter(student =>
       student.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -57,7 +57,7 @@ export class StudentListComponent implements OnInit {
   }
 
   filterAge(searchString: string) {
-    return this.students.filter(student =>
+    return this.filteredStudents.filter(student =>
       student.age.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -72,7 +72,7 @@ export class StudentListComponent implements OnInit {
   }
 
   filterEmail(searchString: string) {
-    return this.students.filter(student =>
+    return this.filteredStudents.filter(student =>
       student.email.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -87,7 +87,7 @@ export class StudentListComponent implements OnInit {
   }
 
   filterPhone(searchString: string) {
-    return this.students.filter(student =>
+    return this.filteredStudents.filter(student =>
       student.phone.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -102,7 +102,7 @@ export class StudentListComponent implements OnInit {
   }
 
   filterMember(searchString: string) {
-    return this.students.filter(student =>
+    return this.filteredStudents.filter(student =>
       student.member.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -117,7 +117,7 @@ export class StudentListComponent implements OnInit {
   }
 
   filterWard(searchString: string) {
-    return this.students.filter(student =>
+    return this.filteredStudents.filter(student =>
       student.ward.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -132,7 +132,7 @@ export class StudentListComponent implements OnInit {
   }
 
   filterStatus(searchString: string) {
-    return this.students.filter(student =>
+    return this.filteredStudents.filter(student =>
       student.status.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -147,7 +147,7 @@ export class StudentListComponent implements OnInit {
   }
 
   filterPercentage(searchString: string) {
-    return this.students.filter(student =>
+    return this.filteredStudents.filter(student =>
       student.percentage.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 

@@ -49,7 +49,7 @@ export class CourseListComponent implements OnInit {
   }
 
   filterName(searchString: string) {
-    return this.courses.filter(course =>
+    return this.filteredCourses.filter(course =>
       course.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -64,7 +64,7 @@ export class CourseListComponent implements OnInit {
   }
 
   filterYear(searchString: string) {
-    return this.courses.filter(course =>
+    return this.filteredCourses.filter(course =>
       course.year.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -79,7 +79,7 @@ export class CourseListComponent implements OnInit {
   }
 
   filterDay(searchString: string) {
-    return this.courses.filter(course =>
+    return this.filteredCourses.filter(course =>
       course.day.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -94,7 +94,7 @@ export class CourseListComponent implements OnInit {
   }
 
   filterTime(searchString: string) {
-    return this.courses.filter(course =>
+    return this.filteredCourses.filter(course =>
       course.time.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -109,7 +109,7 @@ export class CourseListComponent implements OnInit {
   }
 
   filterBuilding(searchString: string) {
-    return this.courses.filter(course =>
+    return this.filteredCourses.filter(course =>
       course.building.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -124,7 +124,7 @@ export class CourseListComponent implements OnInit {
   }
 
   filterStudents(searchString: string) {
-    return this.courses.filter(course =>
+    return this.filteredCourses.filter(course =>
       course.count.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -139,7 +139,7 @@ export class CourseListComponent implements OnInit {
   }
 
   filterInstructor(searchString: string) {
-    return this.courses.filter(course =>
+    return this.filteredCourses.filter(course =>
       course.instructorName.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 

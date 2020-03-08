@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node start build/index.js",
-    "build": "tsc -w",
-    "dev": "nodemon build/index.js"
+    "start": "node start build/index.js"
   },
   "keywords": [],
   "author": "",
