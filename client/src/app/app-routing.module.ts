@@ -16,16 +16,23 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { AuthGuard } from '../app/guards/auth.guard';
 import { Resolver } from '../app/resolver';
 import { RegisterComponent } from './components/register/register.component';
+import { GraphsListComponent } from './components/graphs-list/graphs-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'register',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'students/graphs/stats',
+    component: GraphsListComponent,
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'attendance/group/:id',

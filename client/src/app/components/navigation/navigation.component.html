@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top scrolling-navbar">
+  <div class="container col-md-12">
     <a class="navbar-brand" routerLink="/">English Connect</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,11 +11,16 @@
             <a class="nav-link" routerLink="{{permission.link}}">{{permission.section}}</a>
           </div>
         </li>
+        <li class="nav-item active">
+          <div>
+            <a class="nav-link" routerLink="students/graphs/stats">Statistics</a>
+          </div>
+        </li>
         <li class="nav-item">
           <a class="nav-link" (click)="signOut()">Salir</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Welcome {{afAuth.auth.currentUser.email}}</a>
+          <a class="nav-link">{{afAuth.auth.currentUser.email}}</a>
         </li>
       </ul>
     </div>

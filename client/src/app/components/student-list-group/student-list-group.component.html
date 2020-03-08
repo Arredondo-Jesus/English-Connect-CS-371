@@ -1,15 +1,15 @@
-<h3>Lista de asistencia {{count}}</h3>
-<div class="row bg-info p-1">
-  <div class="col text-white text-center">Fecha</div>
-  <div class="col text-white text-center">Leccion</div>
-  <div class="col text-white text-center">Nombre</div>
-  <div class="col text-white text-center">Asistencia</div>
+<h3 class="text-center">Attendance List Details {{count}}</h3>
+<div class="row bg-primary d-flex flex-row card-header p-1">
+  <div class="col text-white text-center">Date</div>
+  <div class="col text-white text-center">Lesson</div>
+  <div class="col text-white text-center">Name</div>
+  <div class="col text-white text-center">Attendance</div>
 </div>
-<div id="table" class="row p-1 border border-secondary" *ngFor="let student of students">
+<div id="table" class="row d-flex flex-row card p-1" *ngFor="let student of students">
   <div class="col text-center">{{student.date | date : "MM/dd/yyyy"}}</div>
   <div class="col text-center">{{student.lesson}}</div>
   <div class="col text-center">{{student.name}} {{student.last_name}}</div>
-  <div class="col text-center" [class.red]="!student.attendance_value" [class.green]="student.attendance_value" >
+  <div class="col text-center" [class.no-attendance]="!student.attendance_value" [class.attendance]="student.attendance_value" >
     {{student.attendance_value == 1 ? 'Yes': 'No'}}</div>
 </div>
 

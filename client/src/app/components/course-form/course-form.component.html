@@ -1,58 +1,58 @@
 <div class="col-md-6 offset-3">
-  <h3>Agregar / Editar Courso</h3>
+  <h3>Add / Edit Course</h3>
   <div class="card">
     <div class="card-body">
       <form #courseForm="ngForm">
         <div class="form-group">
-          <input type="text" name="course" #name="ngModel" placeholder="Nombre del curso" pattern="^[a-zA-Z\s]*$"
+          <input type="text" name="course" #name="ngModel" placeholder="Course name" pattern="^[a-zA-Z\s]*$"
           required [(ngModel)]="course.name" class="form-control" autofocus>
         </div>
         <div class="alert alert-danger" *ngIf="name.value === '' && name.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="alert alert-danger" *ngIf="name.invalid && name.dirty && name.value !== ''">
-            Solo se permiten letras
+            Only letters are allowed
         </div>
         <div class="form-group">
             <input type="text" name="level" #level="ngModel" pattern="[0-3]{1}"
-            placeholder="Nivel" required [(ngModel)]="course.level" class="form-control">
+            placeholder="Level" required [(ngModel)]="course.level" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="level.value === '' && level.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="alert alert-danger" *ngIf="level.invalid && level.dirty && level.value !== ''">
-            Solo numeros del 1 al 3
+            Only numbers from 1 to 3 are allowed
         </div>
         <div class="form-group">
             <input type="text" name="year" #year="ngModel" pattern="[0-9]{4}"
-            placeholder="Año en que se abrira el curso" required [(ngModel)]="course.year" class="form-control">
+            placeholder="Year in which the course wil be taught" required [(ngModel)]="course.year" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="year.value === '' && year.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="alert alert-danger" *ngIf="year.invalid && year.dirty && year.value !== ''">
-            Solo se permiten 4 numeros
+            Only 4 numbers are allowed
         </div>
         <div class="form-group">
-            <input type="text" name="day" #day="ngModel" placeholder="Dia en que se tendra el curso"
+            <input type="text" name="day" #day="ngModel" placeholder="Day in which the course will be taught"
             pattern="\b(Lunes|Martes|Miercoles|Jueves|Viernes|Sabado|Domingo)\b"
             required [(ngModel)]="course.day" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="day.value === '' && day.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="alert alert-danger" *ngIf="day.invalid && day.dirty && day.value !== ''">
-            Escriba el dia por ejemplo Lunes
+            Write the day of the week (eg. Monday)
         </div>
         <div class="form-group">
-            <input type="text" name="time" #time="ngModel" placeholder="Hora del curso" pattern="\b((1[0-2]|0?[1-9]):([0-5][0-9]) ([AP][M]))"
+            <input type="text" name="time" #time="ngModel" placeholder="Time of the course" pattern="\b((1[0-2]|0?[1-9]):([0-5][0-9]) ([AP][M]))"
             required [(ngModel)]="course.time" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="time.invalid && time.dirty && time.value !== ''">
-            La hora debe ir en el siguiente formato h:mm PM / AM
+            The time has the following format h:mm PM / AM
         </div>
         <div class="alert alert-danger" *ngIf="time.value === '' && time.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="form-group">
           <select name="building" class="form-control"
@@ -69,9 +69,9 @@
                     [ngValue]="instructor.id">{{instructor.name}} {{instructor.last_name}}</option>
           </select>
         </div>
-        <button class="btn btn-primary btn-block" (click)="edit ? updateCourse() : saveNewCourse()"
+        <button class="btn btn-warning btn-block" (click)="edit ? updateCourse() : saveNewCourse()"
                 [disabled]="!name.valid || !level.valid || !year.valid || !day.valid || !time.valid || !instructor.dirty" >
-          Guardar
+         <i class="fas fa-save"></i> Save
         </button>
       </form>
     </div>

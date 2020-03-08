@@ -1,30 +1,30 @@
 <div class="col-md-6 offset-3">
-  <h3>Agregar / Editar Student</h3>
+  <h3>Add / Edit Student</h3>
   <div class="card">
     <div class="card-body">
       <form>
           <div class="alert alert-success" *ngIf="registration">
-            Se dio de alta exitosamente
+            The record was added successfully
           </div>
           <div class="form-group">
-            <input type="text" name="name" #name="ngModel"placeholder="Nombre" pattern="^[a-zA-Z\s]*$"
+            <input type="text" name="name" #name="ngModel"placeholder="Student's name" pattern="^[a-zA-Z\s]*$"
           required [(ngModel)]="student.name" class="form-control" autofocus>
         </div>
         <div class="alert alert-danger" *ngIf="name.value === '' && name.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="alert alert-danger" *ngIf="name.invalid && name.dirty && name.value !== ''">
-            Solo se permiten letras
+            Only letters are allowed
         </div>
         <div class="form-group">
-            <input type="text" name="lastName" #lastName="ngModel" placeholder="Apellido(s)" pattern="^[a-zA-Z\s]*$"
+            <input type="text" name="Student's last name" #lastName="ngModel" placeholder="Apellido(s)" pattern="^[a-zA-Z\s]*$"
             required [(ngModel)]="student.last_name" class="form-control" autofocus>
           </div>
           <div class="alert alert-danger" *ngIf="lastName.value === '' && lastName.dirty">
-              Campo Obligatorio
+              Required Field
           </div>
           <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.dirty && lastName.value !== ''">
-              Solo se permiten letras
+              Only letters are allowed
           </div>
           <div class="form-group">
             <select name="age" class="form-control" #age="ngModel"
@@ -35,24 +35,24 @@
             </select>
           </div>
         <div class="form-group">
-            <input type="email" name="email" #email="ngModel" required email placeholder="Correo electronico"
+            <input type="email" name="email" #email="ngModel" required email placeholder="Student's email"
             [(ngModel)]="student.email" class="form-control" autofocus>
         </div>
         <div class="alert alert-danger" *ngIf="email.value === '' && email.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="alert alert-danger" *ngIf="email?.errors?.email && email.touched && email.dirty">
-          Formato de correo no valido.
+          Email format not valid eg. test@test.com
         </div>
         <div class="form-group">
             <input type="text" name="phone" #phone="ngModel" pattern="[0-9]{10}"
-            required placeholder="Telefono del estudiante" [(ngModel)]="student.phone" class="form-control">
+            required placeholder="Student's phone number" [(ngModel)]="student.phone" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="phone.value === '' && phone.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="alert alert-danger" *ngIf="phone.invalid && phone.dirty && phone.value !== ''">
-            Solo se permiten 10 digitos
+            Only 10 digits are allowed
         </div>
         <div class="form-group">
           <select name="ward" class="form-control" #ward="ngModel"
@@ -70,10 +70,10 @@
             [selected]="student.member === member && edit === true">{{member}}</option>
           </select>
         </div>
-        <button class="btn btn-danger btn-block" (click)="edit ? updateStudent() : saveNewStudent()"
+        <button class="btn btn-warning btn-block" (click)="edit ? updateStudent() : saveNewStudent()"
         [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || registration || !age.dirty
                   || !ward.dirty || !member.dirty">
-          Guardar
+          <i class="fas fa-save"></i> Save
         </button>
       </form>
     </div>

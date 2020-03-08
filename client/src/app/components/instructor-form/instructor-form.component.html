@@ -1,51 +1,51 @@
 <div class="col-md-6 offset-3">
-  <h3>Agregar / Editar Instructores</h3>
+  <h3>Add / Edit Instructors</h3>
   <div class="card">
     <div class="card-body">
       <form>
         <div class="form-group">
-          <input type="text" name="name" #name="ngModel" placeholder="Nombre del Instructor" pattern="^[a-zA-Z\s]*$"
+          <input type="text" name="name" #name="ngModel" placeholder="Instructor's Name" pattern="^[a-zA-Z\s]*$"
           required [(ngModel)]="instructor.name" class="form-control" autofocus>
         </div>
         <div class="alert alert-danger" *ngIf="name.value === '' && name.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="alert alert-danger" *ngIf="name.invalid && name.dirty && name.value !== ''">
-            Solo se permiten letras
+            Only letters are allowed
         </div>
         <div class="form-group">
-            <input type="text" name="lastName" #lastName="ngModel" placeholder="Apellido(s) del instructor" pattern="^[a-zA-Z\s]*$"
+            <input type="text" name="lastName" #lastName="ngModel" placeholder="Instructor's last name" pattern="^[a-zA-Z\s]*$"
             required [(ngModel)]="instructor.last_name" class="form-control" autofocus>
           </div>
           <div class="alert alert-danger" *ngIf="lastName.value === '' && lastName.dirty">
-              Campo Obligatorio
+              Required Field
           </div>
           <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.dirty && lastName.value !== ''">
-              Solo se permiten letras
+              Only letters are allowed
           </div>
         <div class="form-group">
-          <input type="email" name="email" #email="ngModel" required email placeholder="Correo electronico"
+          <input type="email" name="email" #email="ngModel" required email placeholder="Email"
           [(ngModel)]="instructor.email" class="form-control" autofocus>
         </div>
         <div class="alert alert-danger" *ngIf="email.value === '' && email.dirty">
-          Campo Obligatorio
+          Rrequired Field
       </div>
       <div class="alert alert-danger" *ngIf="email?.errors?.email && email.touched && email.dirty">
-          Formato de correo invalido.
+          Email format not valid eg. test@test.com
       </div>
         <div class="form-group">
             <input type="text" name="Telefono" #phone="ngModel" placeholder="Instructor phone" pattern="[0-9]{10}"
             required [(ngModel)]="instructor.phone" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="phone.value === '' && phone.dirty">
-            Campo Obligatorio
+            Required Field
         </div>
         <div class="alert alert-danger" *ngIf="phone.invalid && phone.dirty && phone.value !== ''">
-            Solo se permiten 10 digitos
+            Only numbers are allowed
         </div>
         <button class="btn btn-warning btn-block" (click)="edit ? updateInstructor() : saveNewInstructor()"
         [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid">
-          Guardar
+          <i class="fas fa-save"></i> Save
         </button>
       </form>
     </div>

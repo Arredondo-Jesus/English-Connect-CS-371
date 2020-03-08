@@ -37,6 +37,8 @@ import { AuthGuard } from '../app/guards/auth.guard';
 import { Resolver } from './resolver';
 import { RegisterComponent } from './components/register/register.component';
 import { NonAuthNavigationComponent } from './components/non-auth-navigation/non-auth-navigation.component';
+import { GraphsListComponent } from './components/graphs-list/graphs-list.component';
+import { ChartsModule } from 'ng2-charts';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -71,7 +73,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     UserFormComponent,
     UserListComponent,
     RegisterComponent,
-    NonAuthNavigationComponent
+    NonAuthNavigationComponent,
+    GraphsListComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ChartsModule
   ],
   providers: [
     CoursesService,

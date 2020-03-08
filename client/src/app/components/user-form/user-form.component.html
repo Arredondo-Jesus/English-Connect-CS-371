@@ -1,17 +1,17 @@
 <div class="col-md-6 offset-3">
-  <h3>Crear / Editar Usuario</h3>
+  <h3 class="text-center">Create / Edita User</h3>
   <div class="card">
     <div class="card-body">
       <form>
         <div class="form-group">
-          <input type="email" name="email" #email="ngModel" required email placeholder="Correo electronico"
+          <input type="email" name="email" #email="ngModel" required email placeholder="User's email"
           [(ngModel)]="fireBaseUser.email" class="form-control" autofocus>
         </div>
         <div class="alert alert-danger" *ngIf="email.value === '' && email.dirty">
-          Campo Obligatorio
+          Required Field
       </div>
       <div class="alert alert-danger" *ngIf="email?.errors?.email && email.touched && email.dirty">
-        Formato de correo invalido.
+        Email format not valid eg. test@test.com
       </div>
         <div class="form-group">
             <input type="password" name="password" placeholder="Contraseña" *ngIf="edit == false" [(ngModel)]="fireBaseUser.password" class="form-control">
@@ -24,7 +24,7 @@
       </div>
         <button class="btn btn-primary btn-block form-control" (click)="edit ? updateUser() : signUp()"
         [disabled]="!email.valid || !rol.dirty">
-          Guardar
+          Save
         </button>
         <button disabled class="btn btn-danger btn-block form-control" *ngIf="edit == true" (click)="disableUser(fireBaseUser.disabled)">
             {{ fireBaseUser.disabled == true ? 'Activar Account' : 'Deshabilitar Cuenta' }}

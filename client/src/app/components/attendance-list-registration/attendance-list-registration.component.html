@@ -1,4 +1,4 @@
-<h3>Registrar Asistencia {{count}}</h3>
+<h3 class="text-center">Record Attendance {{count}}</h3>
 <div class="row">
     <div class="col-md-12 p-2">
       <div class="p-2">
@@ -13,31 +13,27 @@
                   </select>
               </div>
               <div class="col col-md-4 p-1">
-                  <button class="btn btn-warning btn-block noprint" (click)="edit ? updateAttendance() : saveNewAttendanceList()">Guardar</button>
+                  <button class="btn btn-warning btn-block noprint" (click)="edit ? updateAttendance() : saveNewAttendanceList()"><i class="fas fa-save"></i> Save</button>
               </div>
             </div>
 
-            <div class="row bg-info p-1">
-              <div class="col text-white text-center">Numero</div>
-              <div class="col text-white text-center">Nombre</div>
-              <div class="col text-white text-center">Asistio</div>
-            </div>
-
-            <div class="row p-1 border border-secondary">
-              <div class="col-md-4"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Name"></div>
-            </div>
-
-            <div id="table" class="row p-1 border border-secondary" *ngFor="let student of filteredStudents let i = index">
-              <div class="col text-center" [class.green]="attendanceValues[i]" [class.red]="!attendanceValues[i]">
+            <div id="table" class="d-flex flex-row card m-2 p-2" *ngFor="let student of filteredStudents let i = index">
+              <div class="col col-md-1 text-center" [class.attendance]="attendanceValues[i]" [class.no-attendance]="!attendanceValues[i]">
                 {{i+1}}
               </div>
-              <div class="col text-center" [class.green]="attendanceValues[i]" [class.red]="!attendanceValues[i]">
-                {{student.name}} {{student.last_name}}
-              </div>
-                <div class="col text-center">
-                  <input type="checkbox" name="attendanceOptions[{{i}}]" [(ngModel)]="attendanceValues[i]">
+              <div class="photo-icon">
+                <div class="d-flex align-items-center"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="picture"
+                     class="mr-3 rounded-circle img-thumbnail shadow-sm">
                 </div>
               </div>
+              <div class="col col-md-8 text-center p-3" [class.attendance]="attendanceValues[i]" [class.no-attendance]="!attendanceValues[i]">
+                {{student.name}} {{student.last_name}}
+              </div>
+              <div class="col col-md-1 text-center custom-control custom-checkbox p-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck{{i}}" name="attendanceOptions[{{i}}]" [(ngModel)]="attendanceValues[i]">
+                <label class="custom-control-label" for="customCheck{{i}}"></label>
+              </div>
+            </div>
         </form>
       </div>
     </div>

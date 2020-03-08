@@ -1,18 +1,18 @@
-<h3>Usuarios {{count}}</h3>
-<div class="row bg-primary p-1">
-  <div class="col-md-3 text-white text-center">Nombre</div>
-  <div class="col-md-3 text-white text-center">Ultima visita</div>
-  <div class="col-md-3 text-white text-center">Creado en</div>
-  <div class="col-md-1 text-white text-center">Deshabilitado</div>
-  <div class="col-md-1 text-white text-center">Rol</div>
-  <div class="col-md-1 text-white text-center">Editar</div>
+<h3 class="text-center">Users {{count}}</h3>
+<div class="row bg-primary d-flex flex-row card-headery p-1">
+  <div class="col-md-3 text-white text-center">Name</div>
+  <div class="col-md-3 text-white text-center">Last Login</div>
+  <div class="col-md-3 text-white text-center">Creation Date</div>
+  <div class="col-md-1 text-white text-center">Disabled</div>
+  <div class="col-md-1 text-white text-center">Role</div>
+  <div class="col-md-1 text-white text-center">Edit</div>
 </div>
-<div id="table" class="row p-1 border border-secondary" *ngFor="let fireBaseUser of fireBaseUsers; let i = index">
+<div id="table" class="row p-0 d-flex flex-row card" *ngFor="let fireBaseUser of fireBaseUsers; let i = index">
   <div class="col-md-3 text-center sm-3">{{fireBaseUser.email}}</div>
   <div class="col-md-3 text-center sm-3">{{fireBaseUser.metadata.lastSignInTime}}</div>
   <div class="col-md-3 text-center sm-3">{{fireBaseUser.metadata.creationTime}}</div>
   <div class="col-md-1 text-center sm-3">{{fireBaseUser.disabled}}</div>
   <div class="col-md-1 text-center sm-3">{{users[i].roleName}}</div>
   <div class="col-md-1 text-center">
-    <button class="btn btn-warning" (click)="getDBUser(fireBaseUser.uid); getById(fireBaseUser.uid)">Editar</button>
+    <button class="btn btn-success p-2" (click)="getDBUser(fireBaseUser.uid); getById(fireBaseUser.uid)"><i class="fas fa-edit"></i></button>
   </div>

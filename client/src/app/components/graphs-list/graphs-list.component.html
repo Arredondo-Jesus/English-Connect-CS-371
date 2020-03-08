@@ -1,0 +1,40 @@
+
+<div class="container row" id="graphs">
+  <div class="col-md-6 graph" style="display: block" *ngIf="pieChartLabels && pieChartData">
+    <h4 class="text-center">Student Per Ward</h4>
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [colors]="pieChartColor">
+    </canvas>
+  </div>
+
+  <div class="col-md-6 graph" style="display: block">
+    <h4 class="text-center">Title</h4>
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+  </div>
+
+  <div class="col-md-6 graph" style="display: block" *ngIf="pieChartLabels && pieChartData">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [colors]="pieChartColor">
+    </canvas>
+  </div>
+
+  <div class="col-md-6 graph" style="display: block">
+    <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"></canvas>
+  </div>
+
+</div>

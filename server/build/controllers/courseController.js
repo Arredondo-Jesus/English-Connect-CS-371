@@ -34,7 +34,7 @@ class CourseController {
                                         LEFT OUTER JOIN student s ON s.course_id = c.id
                                         WHERE c.status = 'active'
                                         GROUP BY c.id
-                                        ORDER BY c.year DESC, i.name ASC`);
+                                        ORDER BY c.year DESC`);
             res.json(courses);
         });
     }

@@ -3,10 +3,34 @@
   background-color:#FBF6AC;
 }
 
-.red {
+.no-attendance {
   color: red;
 }
 
-.green {
+.attendance {
   color: green;
 }
+
+.photo-icon{
+  width: 60px;
+  border-radius: 100px;
+}
+
+.card-header{
+  margin-top: 30px;
+}
+
+i{
+  font-size: 20px;
+}
+
+h3{
+  margin-top: 60px;
+}
+
+@media print {
+  .noprint {
+     display: none;
+  }
+}
+

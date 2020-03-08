@@ -114,7 +114,7 @@ export class AttendanceListRegistrationComponent implements OnInit {
         res => {
           this.studentList = res;
           this.filteredStudents = this.studentList;
-          this.count = this.attendanceList.length;
+          this.count = this.filteredStudents.length;
           console.log(res);
           this.today = this.datePipe.transform(this.studentList[0].date, 'yyyy-MM-dd');
           this.attendance.date = this.today;

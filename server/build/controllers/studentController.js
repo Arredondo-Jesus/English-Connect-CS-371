@@ -16,31 +16,21 @@ const database_1 = __importDefault(require("../database"));
 class StudentController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const students = yield database_1.default.query(`SELECT	s.name,
-                                                    s.last_name,
-                                                    s.phone,
-                                                    s.email,
-                                                    s.age,
-                                                    s.member,
-                                                    s.ward,
-                                                    s.status,
-                                                    SUM(CASE
-                                                    WHEN a.attendance_value = 1 THEN 1
-                                                    ELSE 0
-                                                END) AS 'yes',
-                                                SUM(CASE
-                                                    WHEN a.attendance_value = 0 THEN 1
-                                                    ELSE 0
-                                                END) AS 'no',
-                                                SUM(CASE
-                                                    WHEN a.attendance_value = 0  OR a.attendance_value = 1 THEN 1
-                                                    ELSE 0
-                                                END) AS 'total'
+            const students = yield database_1.default.query(`SELECT 	s.name,
+                                            s.last_name,
+                                            s.age,
+                                            s.email,
+                                            s.phone,
+                                            s.member,
+                                            s.ward,
+                                            s.status,
+                                            SUM(a.attendance_value) AS 'yes',
+                                            COUNT(s.id) AS 'total'
                                             FROM student s
-                                            JOIN attendance a ON s.id = a.student_id
-                                            WHERE s.status = 'active' 
-                                            GROUP BY a.student_id  
-                                            ORDER BY Total  DESC`);
+                                            LEFT JOIN attendance a ON a.student_id = s.id
+                                            JOIN course c ON c.id = s.course_id
+                                            WHERE s.status = 'active'
+                                            GROUP BY s.id`);
             res.json(students);
         });
     }
@@ -78,34 +68,33 @@ class StudentController {
     getByCourseDetails(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const query = `SELECT	s.name,
+            const query = `SELECT 	s.name,
                         s.last_name,
-                        s.phone,
-                        s.email,
                         s.age,
+                        s.email,
+                        s.phone,
                         s.member,
                         s.ward,
                         s.status,
-                        s.course_id,
-                        SUM(CASE
-                        WHEN a.attendance_value = 'Yes' THEN 1
-                        ELSE 0
-                    END) AS 'yes',
-                    SUM(CASE
-                        WHEN a.attendance_value = 'No' THEN 1
-                        ELSE 0
-                    END) AS 'no',
-                    SUM(CASE
-                        WHEN a.attendance_value = 'No'  OR a.attendance_value = 'Yes' THEN 1
-                        ELSE 0
-                    END) AS 'total'
-                FROM student s
-                JOIN attendance a ON s.id = a.student_id
-                WHERE s.course_id = ?
-                AND s.status = 'active'
-                GROUP BY a.student_id  
-                ORDER BY Total  DESC`;
+                        SUM(a.attendance_value) AS 'yes',
+                        COUNT(s.id) AS 'total'
+                        FROM student s
+                        LEFT JOIN attendance a ON a.student_id = s.id
+                        JOIN course c ON c.id = s.course_id
+                        WHERE c.id = ?
+                        AND s.status = 'active'
+                        GROUP BY s.id`;
             const students = yield database_1.default.query(query, [id]);
+            res.json(students);
+        });
+    }
+    countPerWard(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const students = yield database_1.default.query(`SELECT count(s.id) AS 'Total',
+                                                  s.ward
+                                            FROM student s
+                                            GROUP BY s.ward  
+                                            ORDER BY Total  DESC`);
             res.json(students);
         });
     }

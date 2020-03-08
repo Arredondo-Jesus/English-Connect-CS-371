@@ -30,6 +30,10 @@ export class StudentsService {
     return this.http.get(`${this.API_URI}/students/group/${id}`);
   }
 
+  countPerWard() {
+    return this.http.get(`${this.API_URI}/students/graphs/stats`);
+  }
+
   saveStudent(id: string | number, student: Student) {
     return this.http.post(`${this.API_URI}/students/add/${id}`, student);
   }
