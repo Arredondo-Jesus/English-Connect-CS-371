@@ -8,6 +8,7 @@ import instructorRoutes from './routes/instructorRoutes';
 import studentRoutes from './routes/studentRoutes';
 import attendanceRoutes from './routes/attendanceRoutes';
 import  userRoutes from './routes/userRoutes';
+import multer from 'multer';
 
 
 class Server {
@@ -22,14 +23,18 @@ class Server {
         this.routes();
     }
 
+   
+
     config(): void {
+        // configure server
         this.app.set('port', process.env.PORT || 3000 );
         this.app.use(morgan('dev'));
         this.app.use(cors());
         this.app.use(express.static('./public'));
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
-
+        
+        // configure cors
         this.app.use((req, res, next) => {
             res.header('Access-Control-Allow-Origin', '*');
             res.header('Access-Control-Allow-Headers', 'Origine, X-Requested-With, Content-Type, Accept, Authorization');

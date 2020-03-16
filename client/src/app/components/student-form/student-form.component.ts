@@ -4,6 +4,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 
 import { StudentsService } from './../../services/students.service';
 import { Student } from './../../models/Student';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-student-form',
@@ -23,20 +24,21 @@ export class StudentFormComponent implements OnInit {
     id: 0,
     name: '',
     last_name: '',
-    age: '',
+    age: 'Mayor de 18',
     email: '',
     phone: '',
     created_at: new Date(),
     status: '',
     course_id: 0,
-    member: '',
-    ward: ''
+    member: 'Miembro de la Iglesia',
+    ward: 'Garcia'
   };
 
   edit = false;
   registration = false;
 
-  constructor(private studentsService: StudentsService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private studentsService: StudentsService, private router: Router, private activatedRoute: ActivatedRoute,
+              private http: HttpClient) { }
 
   ngOnInit() {
    this.getStudent();

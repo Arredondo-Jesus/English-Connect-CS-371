@@ -54,4 +54,8 @@ export class UserService {
   updateUser(uid: string, updatedUser: FireBaseUser) {
     return this.http.post(`${this.API_URI}/users/update/${uid}`, updatedUser);
   }
+
+  getRoles() {
+    return this.http.get(`${this.API_URI}/users/roles/info`);
+  }
 }

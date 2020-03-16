@@ -4,14 +4,6 @@
 
 input{
   background-color: #FBF6AC;
-  z-index: -1;
-}
-
-input:focus{
-  z-index: 1000;
-  width: 200px;
-  background-color: #FBF6AC;
-  transition: ease-in-out, width .35s ease-in-out;
 }
 
 .card-header{

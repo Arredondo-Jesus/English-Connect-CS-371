@@ -11,13 +11,8 @@
             <a class="nav-link" routerLink="{{permission.link}}">{{permission.section}}</a>
           </div>
         </li>
-        <li class="nav-item active">
-          <div>
-            <a class="nav-link" routerLink="students/graphs/stats">Statistics</a>
-          </div>
-        </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="signOut()">Salir</a>
+          <a class="nav-link" (click)="signOut()">Exit</a>
         </li>
         <li class="nav-item">
           <a class="nav-link">{{afAuth.auth.currentUser.email}}</a>

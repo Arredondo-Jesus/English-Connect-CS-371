@@ -29,26 +29,25 @@
     </div>
 
     <div class="col-md-3 text-center">
-      <button [routerLink]="['/attendance/register', course.id]" class="btn btn-warning p-2">
+      <button [routerLink]="['/attendance/register', course.id]" class="btn btn-warning p-2" title="Register Attendance">
         <div><i class="fas fa-clipboard-list"> </i></div>
       </button>
 
-      <button [routerLink]="['/attendance/group', course.id]" class="btn btn-success p-2">
+      <button [routerLink]="['/attendance/group', course.id]" class="btn btn-success p-2" title="View attendance history">
         <div><i class="fas fa-history"> </i></div>
       </button>
 
-      <button [routerLink]="['/student/add', course.id]" [disabled]="course.year !== currentYear && admin == false" class="btn btn-success p-2">
+      <button [routerLink]="['/student/add', course.id]" [disabled]="course.year !== currentYear && admin == false" class="btn btn-success p-2" title="Add User">
         <div><i class="fas fa-user-plus"></i> </div>
       </button>
 
-      <button [routerLink]="['/course/edit', course.id]" *ngIf="admin === true" class="btn btn-success p-2">
+      <button [routerLink]="['/course/edit', course.id]" *ngIf="admin === true" class="btn btn-success p-2" title="Edit">
         <div><i class="fas fa-edit"></i> </div>
       </button>
 
-      <button class="btn btn-danger p-2" (click)="deleteCourse(course.id)">
+      <button class="btn btn-danger p-2" title="Delete" (click)="userDeletionPreference() ? deleteCourse(course.id) : delete=false" title="Delete">
         <div><i class="fas fa-trash"></i> </div>
       </button>
-
     </div>
   </div>
 </div>

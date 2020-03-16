@@ -4,7 +4,7 @@ import pool from '../database';
 class InstructorController {
 
     public async list (req: Request, res: Response){
-        const instructors = await pool.query("SELECT * FROM instructor i WHERE i.status = 'active' ORDER BY i.name");
+        const instructors = await pool.query("SELECT *   FROM instructor i WHERE i.status = 'active' ORDER BY i.name");
         res.json(instructors);
     }
 

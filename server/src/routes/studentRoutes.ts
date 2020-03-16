@@ -12,6 +12,7 @@ class StudentRoutes {
         this.router.get('/', studentController.list);
         this.router.get('/:id', studentController.getOne);
         this.router.get('/group/:id/:date', studentController.getByCourse);
+        this.router.get('/graphs/attendanceperward', studentController.attendancePerWard);
         this.router.get('/group/:id', studentController.getByCourseDetails);
         this.router.get('/graphs/stats', studentController.countPerWard);
         this.router.post('/add/:cid', studentController.create);

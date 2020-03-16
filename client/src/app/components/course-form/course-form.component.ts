@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Course } from 'src/app/models/Course';
+import { Instructor } from 'src/app/models/Instructor';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CoursesService } from '../../services/courses.service';
@@ -16,17 +17,22 @@ export class CourseFormComponent implements OnInit {
 
   instructors: any = [];
   buildings: any = ['Garcia', 'Libramiento / Lincoln', 'Hacienda / Nogal', 'Valle Verde', 'Fryle / San Bernabe 1 / San Bernanbe 2'];
+  days: any = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   course: Course = {
     id: 0,
     level: 1,
     year: '',
-    day: '',
-    time: '',
+    day: 'Monday',
+    time: '7:00 PM',
     building: 'Garcia',
     created_at: new Date(),
     status: '',
     instructor_id: 0
+  };
+
+  instructor: Instructor = {
+    id: 0
   };
 
   edit = false;

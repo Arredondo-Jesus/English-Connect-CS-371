@@ -54,10 +54,7 @@ const routes: Routes = [
   },
   {
     path: 'courses',
-    component: CourseListComponent,
-    canLoad: [AuthGuard],
-    canActivate: [AuthGuard],
-    resolve: { permissions: Resolver }
+    component: CourseListComponent
   },
   {
     path: 'course/add',

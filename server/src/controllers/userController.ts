@@ -18,6 +18,11 @@ class UserController {
                                           JOIN role r ON r.id = u.role`);
         res.json(courses);
     }
+
+    public async listRoles (req: Request, res: Response){
+      const courses = await pool.query(`SELECT * FROM role`);
+      res.json(courses);
+  }
     
     public async getOne (req: Request, res: Response): Promise<any>{
         const { uid } = req.params;

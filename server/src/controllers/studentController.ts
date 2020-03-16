@@ -4,7 +4,8 @@ import pool from '../database';
 class StudentController {
 
     public async list (req: Request, res: Response){
-        const students = await pool.query(`SELECT 	s.name,
+        const students = await pool.query(`SELECT s.id,	
+                                            s.name,
                                             s.last_name,
                                             s.age,
                                             s.email,
@@ -83,7 +84,18 @@ class StudentController {
                                                   s.ward
                                             FROM student s
                                             GROUP BY s.ward  
-                                            ORDER BY Total  DESC`);
+                                            ORDER BY s.ward`);
+        res.json(students);
+    }
+
+    public async attendancePerWard (req: Request, res: Response){
+        const students = await pool.query(`SELECT s.ward,
+                                                    ROUND(AVG(a.attendance_value) * 100, 0) AS 'Yes',
+                                                    100 - ROUND(AVG(a.attendance_value) * 100, 0) AS 'No'
+                                            FROM attendance a
+                                            RIGHT OUTER JOIN student s ON a.student_id = s.id
+                                            GROUP BY s.ward
+                                            ORDER BY s.ward`);
         res.json(students);
     }
 

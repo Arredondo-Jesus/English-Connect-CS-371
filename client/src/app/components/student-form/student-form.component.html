@@ -1,4 +1,4 @@
-<div class="col-md-6 offset-3">
+<div class="col-md-6 container">
   <h3>Add / Edit Student</h3>
   <div class="card">
     <div class="card-body">
@@ -71,8 +71,7 @@
           </select>
         </div>
         <button class="btn btn-warning btn-block" (click)="edit ? updateStudent() : saveNewStudent()"
-        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || registration || !age.dirty
-                  || !ward.dirty || !member.dirty">
+        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || registration">
           <i class="fas fa-save"></i> Save
         </button>
       </form>

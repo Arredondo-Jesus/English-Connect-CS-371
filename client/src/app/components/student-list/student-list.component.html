@@ -7,7 +7,6 @@
   <div class="col-md-1 text-white text-center">Is member?</div>
   <div class="col-md-1 text-white text-center">Ward</div>
   <div class="col-md-1 text-white text-center">% of Attendance</div>
-  <div class="col-md-1 text-white text-center">Status</div>
 </div>
 <div class="row d-flex flex-row card p-1">
   <div class="col-md-2"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Name"></div>
@@ -25,13 +24,17 @@
   <div class="col-md-1 text-center">{{student.phone}}</div>
   <div class="col-md-1 text-center">{{student.member}}</div>
   <div class="col-md-1 text-center">{{student.ward}}</div>
-  <div class="col-md-1 text-center">{{student.status}}</div>
   <div class="col-md-1 text-center">{{(student.yes / student.total) * 100 | number: '1.0-0'}}{{'%'}} {{student.yes > 0 ? student.yes : 0}}{{'/'}}{{student.total}} </div>
-  <div [routerLink]="['/student/edit', student.id]" class="col-md-1 text-center">
-    <button class="btn btn-success p-2"><i class="fas fa-edit"></i></button>
+
+  <div class="text-center">
+    <button [routerLink]="['/student/edit', student.id]" class="btn btn-success p-2" title="Edit">
+      <i class="fas fa-edit"></i>
+    </button>
   </div>
   <div class="text-center">
-    <button class="btn btn-danger p-2" (click)="deleteStudent(student.id)"><i class="fas fa-trash"></i></button>
+    <button class="btn btn-danger p-2" (click)="userDeletionPreference() ? deleteStudent(student.id) : delete = false" title="Delete">
+      <i class="fas fa-trash"></i>
+    </button>
   </div>
 </div>
 

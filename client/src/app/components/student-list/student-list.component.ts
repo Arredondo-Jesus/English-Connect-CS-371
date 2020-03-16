@@ -23,13 +23,14 @@ export class StudentListComponent implements OnInit {
 
   student: Student = {
     id: 0,
-    status: 'inactive',
-    percentage: 0
+    status: 'inactive'
   };
 
   course: Course = {
     id: 0
   };
+
+  delete = false;
 
   get seachName(): string {
     return this.searchValue;
@@ -209,6 +210,12 @@ export class StudentListComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  userDeletionPreference() {
+    if (confirm('Are you sure you want to delete this record?') === true) {
+      return this.delete = true;
+    }
   }
 
 }

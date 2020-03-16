@@ -11,30 +11,14 @@
   </div>
 
   <div class="col-md-6 graph" style="display: block">
-    <h4 class="text-center">Title</h4>
+    <h4 class="text-center">%  of attendance Per Group</h4>
     <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
             [legend]="barChartLegend"
-            [chartType]="barChartType">
+            [chartType]="barChartType"
+            [colors]="barChartColor">
     </canvas>
   </div>
-
-  <div class="col-md-6 graph" style="display: block" *ngIf="pieChartLabels && pieChartData">
-    <canvas baseChart
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"
-            [colors]="pieChartColor">
-    </canvas>
-  </div>
-
-  <div class="col-md-6 graph" style="display: block">
-    <canvas baseChart
-                [data]="doughnutChartData"
-                [labels]="doughnutChartLabels"
-                [chartType]="doughnutChartType"></canvas>
-  </div>
-
 </div>

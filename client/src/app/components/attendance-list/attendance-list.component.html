@@ -20,7 +20,7 @@
   <div class="col-md-3 text-center"><a [routerLink]="['/students/group', course.id, attendance.date | date: 'yyyy-MM-dd']">{{attendance.Yes}} / {{attendance.Total}}</a></div>
   <div class="col-md-3 text-center">{{attendance.lesson}}</div>
   <div [routerLink]="['/attendance/edit', course.id, attendance.date | date : 'yyyy-MM-dd']" class="col-md-3 text-center">
-    <button class="btn btn-success p-2">
+    <button class="btn btn-success p-2" title="Edit">
       <div><i class="fas fa-edit"></i> </div>
     </button>
   </div>

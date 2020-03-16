@@ -19,6 +19,8 @@ export class InstructorListComponent implements OnInit {
     status: 'inactive'
   };
 
+  delete = false;
+
   constructor(private instructorsService: InstructorsService, private router: Router) { }
 
   ngOnInit() {
@@ -44,6 +46,12 @@ export class InstructorListComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  userDeletionPreference() {
+    if (confirm('Are you sure you want to delete this record?') === true) {
+      return this.delete = true;
+    }
   }
 
 }

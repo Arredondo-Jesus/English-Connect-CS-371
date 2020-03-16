@@ -1,5 +1,5 @@
-<div class="col-md-6 offset-3">
-  <h3 class="text-center">Create / Edita User</h3>
+<div class="col-md-6 container">
+  <h3 class="text-center">Create / Edit User</h3>
   <div class="card">
     <div class="card-body">
       <form>
@@ -26,14 +26,14 @@
         [disabled]="!email.valid || !rol.dirty">
           Save
         </button>
-        <button disabled class="btn btn-danger btn-block form-control" *ngIf="edit == true" (click)="disableUser(fireBaseUser.disabled)">
-            {{ fireBaseUser.disabled == true ? 'Activar Account' : 'Deshabilitar Cuenta' }}
+        <button class="btn btn-danger btn-block form-control" *ngIf="edit == true" (click)="disableUser(fireBaseUser.disabled)">
+            {{ fireBaseUser.disabled == true ? 'Enable Account' : 'Disable Account' }}
         </button>
-        <button disabled class="btn btn-info btn-block form-control" *ngIf="edit == true" (click)="resetPasword()">
-            Cambiar contraseña
+        <button class="btn btn-info btn-block form-control" *ngIf="edit == true" (click)="resetPasword()">
+            Change Password
         </button>
-        <button disabled class="btn btn-warning btn-block form-control" *ngIf="edit == true" (click)="deleteFirebaseUser(); deleteUserDB()">
-            Borrar usuario
+        <button class="btn btn-warning btn-block form-control" *ngIf="edit == true" (click)="deleteFirebaseUser(); deleteUserDB()">
+            Delete User
         </button>
       </form>
     </div>

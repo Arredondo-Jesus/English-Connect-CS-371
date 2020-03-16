@@ -13,6 +13,7 @@ class UserRoutes {
         this.router.get('/:uid', userController_1.userController.getOne);
         this.router.get('/search/:uid', userController_1.userController.getUserById);
         this.router.get('/permissions/:email', userController_1.userController.getUserPermissions);
+        this.router.get('/roles/info', userController_1.userController.listRoles);
         this.router.post('/update/:uid', userController_1.userController.updateUser);
         this.router.post('/', userController_1.userController.create);
         this.router.delete('/delete/:id', userController_1.userController.deleteUserDB);

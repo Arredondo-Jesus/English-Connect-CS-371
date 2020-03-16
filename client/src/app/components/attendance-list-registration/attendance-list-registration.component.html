@@ -5,9 +5,11 @@
         <form>
             <div class="row">
               <div class="col col-md-4">
+                <label for="date" class="p-1">Date :</label>
                 <input type="date" name="date"  [(ngModel)]="attendance.date">
               </div>
               <div class="col col-md-4">
+                  <label for="lesson" class="p-1">Lesson :</label>
                   <select [(ngModel)]="attendance.lesson" name="attendance">
                     <option *ngFor="let option of options let i = index" [value]="option.option ">{{option.option}}</option>
                   </select>
@@ -20,11 +22,6 @@
             <div id="table" class="d-flex flex-row card m-2 p-2" *ngFor="let student of filteredStudents let i = index">
               <div class="col col-md-1 text-center" [class.attendance]="attendanceValues[i]" [class.no-attendance]="!attendanceValues[i]">
                 {{i+1}}
-              </div>
-              <div class="photo-icon">
-                <div class="d-flex align-items-center"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="picture"
-                     class="mr-3 rounded-circle img-thumbnail shadow-sm">
-                </div>
               </div>
               <div class="col col-md-8 text-center p-3" [class.attendance]="attendanceValues[i]" [class.no-attendance]="!attendanceValues[i]">
                 {{student.name}} {{student.last_name}}

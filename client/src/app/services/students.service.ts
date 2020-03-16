@@ -34,6 +34,10 @@ export class StudentsService {
     return this.http.get(`${this.API_URI}/students/graphs/stats`);
   }
 
+  attendancePerWard() {
+    return this.http.get(`${this.API_URI}/students/graphs/attendanceperward`);
+  }
+
   saveStudent(id: string | number, student: Student) {
     return this.http.post(`${this.API_URI}/students/add/${id}`, student);
   }

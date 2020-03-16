@@ -37,6 +37,12 @@ class UserController {
             res.json(courses);
         });
     }
+    listRoles(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const courses = yield database2_1.default.query(`SELECT * FROM role`);
+            res.json(courses);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { uid } = req.params;

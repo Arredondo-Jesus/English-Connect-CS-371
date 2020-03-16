@@ -16,7 +16,8 @@ const database_1 = __importDefault(require("../database"));
 class StudentController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const students = yield database_1.default.query(`SELECT 	s.name,
+            const students = yield database_1.default.query(`SELECT s.id,	
+                                            s.name,
                                             s.last_name,
                                             s.age,
                                             s.email,
@@ -94,7 +95,19 @@ class StudentController {
                                                   s.ward
                                             FROM student s
                                             GROUP BY s.ward  
-                                            ORDER BY Total  DESC`);
+                                            ORDER BY s.ward`);
+            res.json(students);
+        });
+    }
+    attendancePerWard(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const students = yield database_1.default.query(`SELECT s.ward,
+                                                    ROUND(AVG(a.attendance_value) * 100, 0) AS 'Yes',
+                                                    100 - ROUND(AVG(a.attendance_value) * 100, 0) AS 'No'
+                                            FROM attendance a
+                                            RIGHT OUTER JOIN student s ON a.student_id = s.id
+                                            GROUP BY s.ward
+                                            ORDER BY s.ward`);
             res.json(students);
         });
     }

@@ -36,6 +36,7 @@ export class CourseListComponent implements OnInit {
 
   admin = false;
   available = true;
+  delete = false;
   currentYear = new Date().getFullYear().toString();
 
   get seachName(): string {
@@ -186,4 +187,11 @@ export class CourseListComponent implements OnInit {
       err => console.log(err)
     );
 }
+
+userDeletionPreference() {
+  if (confirm('Are you sure you want to delete this record?') === true) {
+    return this.delete = true;
+  }
+}
+
 }
