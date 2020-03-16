@@ -15,7 +15,25 @@
                   </select>
               </div>
               <div class="col col-md-4 p-1">
-                  <button class="btn btn-warning btn-block noprint" (click)="edit ? updateAttendance() : saveNewAttendanceList()"><i class="fas fa-save"></i> Save</button>
+                  <button class="btn btn-warning btn-block noprint" (click)="edit ? updateAttendance() : saveNewAttendanceList()">
+                    <i class="fas fa-save"></i> Save
+                  </button>
+              </div>
+            </div>
+
+            <div class="row bg-primary d-flex flex-row card-header m-2 p-2">
+              <div class="col-md-1 text-white text-center">Number</div>
+              <div class="col-md-8 text-white text-center">Name</div>
+              <div class="col-md-1 text-white text-center">Attended</div>
+            </div>
+
+            <div id="table" class="d-flex flex-row card m-2 p-2">
+              <div class="col-md-1 text-white text-center"></div>
+              <div class="col-md-8  text-center">Select All</div>
+              <div class="col col-md-1 text-center custom-control custom-checkbox p-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck" [checked]="1"
+                (change)="toggleEditable($event)">
+                <label class="custom-control-label" for="customCheck"></label>
               </div>
             </div>
 

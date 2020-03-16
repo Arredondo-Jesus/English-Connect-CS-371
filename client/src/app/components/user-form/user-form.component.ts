@@ -44,6 +44,7 @@ export class UserFormComponent implements OnInit {
 
 
   edit = false;
+  delete = false;
 
   constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute,
               public afAuth: AngularFireAuth) { }
@@ -220,6 +221,12 @@ export class UserFormComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  userDeletionPreference() {
+    if (confirm('Are you sure you want to delete this record?') === true) {
+      return this.delete = true;
+    }
   }
 
 }

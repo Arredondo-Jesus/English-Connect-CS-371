@@ -49,6 +49,7 @@ export class AttendanceListRegistrationComponent implements OnInit {
   };
 
   edit = false;
+  contentEditable = true;
 
   get seachName(): string {
     return this.searchValue;
@@ -191,6 +192,23 @@ export class AttendanceListRegistrationComponent implements OnInit {
       newAttendance.student_id = this.studentList[i].id;
       this.attendanceList[i] = newAttendance;
     }
+  }
+
+  toggleEditable(event) {
+    if ( event.target.checked ) {
+        this.contentEditable = true;
+        this.attendanceValues = [];
+        for (const student of this.studentList) {
+          this.attendanceValues.push(1);
+        }
+    } else {
+      this.contentEditable = false;
+      this.attendanceValues = [];
+      for (const student of this.studentList) {
+        this.attendanceValues.push(0);
+      }
+    }
+    console.log(this.attendanceValues);
   }
 
 }

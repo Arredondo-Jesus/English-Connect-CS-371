@@ -22,17 +22,17 @@
             <option [ngValue]="rols[1]">Instructor</option>
           </select>
       </div>
-        <button class="btn btn-primary btn-block form-control" (click)="edit ? updateUser() : signUp()"
+        <button class="btn btn-success btn-block form-control" (click)="edit ? updateUser() : signUp()"
         [disabled]="!email.valid || !rol.dirty">
           Save
         </button>
-        <button class="btn btn-danger btn-block form-control" *ngIf="edit == true" (click)="disableUser(fireBaseUser.disabled)">
+        <button class="btn btn-warning btn-block form-control" *ngIf="edit == true" (click)="disableUser(fireBaseUser.disabled)">
             {{ fireBaseUser.disabled == true ? 'Enable Account' : 'Disable Account' }}
         </button>
         <button class="btn btn-info btn-block form-control" *ngIf="edit == true" (click)="resetPasword()">
             Change Password
         </button>
-        <button class="btn btn-warning btn-block form-control" *ngIf="edit == true" (click)="deleteFirebaseUser(); deleteUserDB()">
+        <button class="btn btn-danger btn-block form-control" *ngIf="edit == true" (click)="deleteFirebaseUser(); deleteUserDB()">
             Delete User
         </button>
       </form>

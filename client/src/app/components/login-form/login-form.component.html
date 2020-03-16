@@ -5,28 +5,28 @@
     <div class="card-body">
       <form>
         <div class="form-group">
-          <input type="email" name="email" #email="ngModel" required email placeholder="Correo"
+          <input type="email" name="email" #email="ngModel" required email placeholder="Email"
           [(ngModel)]="user.username" class="form-control" autofocus>
         </div>
         <div class="alert alert-danger" *ngIf="email.value === '' && email.dirty">
-          Campo Obligatorio
+          Required Field
       </div>
       <div class="alert alert-danger" *ngIf="email?.errors?.email && email.touched && email.dirty">
-        Formato de correo invalido.
+        Email invalid format.
       </div>
         <div class="form-group">
-            <input type="password" name="password" #password="ngModel" required placeholder="Contraseña" [(ngModel)]="user.password" class="form-control">
+            <input type="password" name="password" #password="ngModel" required placeholder="Password" [(ngModel)]="user.password" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="password.invalid && password.dirty">
-          Campo Obligatorio
+          Required Field
       </div>
         <button class="btn btn-success btn-block" (keyup.enter)="signIn()" (click)="signIn()"
         [disabled]="!email.valid || !password.valid">
-          Entrar
+          Login
         </button>
         <button class="btn btn-link btn-block" (click)="resetPasword()"
         [disabled]="!email.valid">
-          Cambiar contraseña
+          Change Password
         </button>
       </form>
     </div>
