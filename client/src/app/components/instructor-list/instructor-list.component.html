@@ -12,10 +12,10 @@
 
     <div class="text-center">
       <button  [routerLink]="['/instructor/edit', instructor.id]" class="btn btn-success p-2" title="Edit"
-      ><i class="fas fa-edit"></i></button>
+      ><i class="fas fa-edit"></i> Edit</button>
     </div>
     <div class="text-center">
       <button class="p-2 btn btn-danger" (click)="userDeletionPreference() ? deleteInstructor(instructor.id) : delete = false" title="Delete"
-      ><i class="fas fa-trash"></i></button>
+      ><i class="fas fa-trash"></i> Delete</button>
     </div>
 </div>

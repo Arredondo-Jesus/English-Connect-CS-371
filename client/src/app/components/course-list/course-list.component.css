@@ -1,9 +1,21 @@
 #table:hover {
-  background-color:#FBF6AC;
+  background-color: #B4E4FB;
 }
 
 input{
   background-color: #FBF6AC;
+}
+
+#search{
+  margin-bottom: 20px;
+}
+
+.header{
+  background-color: #E0E0E0;
+}
+
+.row .div{
+  font-size: 14px;
 }
 
 .card-header{
@@ -11,7 +23,7 @@ input{
 }
 
 i{
-  font-size: 20px;
+  font-size: 15px;
 }
 
 h3{

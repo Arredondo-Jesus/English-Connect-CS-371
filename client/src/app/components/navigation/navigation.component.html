@@ -6,13 +6,68 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li *ngFor="let permission of permissions" class="nav-item active">
-          <div *ngIf="permission.access === 1">
-            <a class="nav-link" routerLink="{{permission.link}}">{{permission.section}}</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Courses
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let permission of permissions" class="nav-item active">
+              <div *ngIf="permission.access === 1 && permission.group === 'courses'">
+                <a class="nav-link dropdown-item" routerLink="{{permission.link}}">{{permission.section}}</a>
+              </div>
+            </li>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Instructors
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let permission of permissions" class="nav-item active">
+              <div *ngIf="permission.access === 1 && permission.group === 'instructors'">
+                <a class="nav-link dropdown-item" routerLink="{{permission.link}}">{{permission.section}}</a>
+              </div>
+            </li>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Students
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let permission of permissions" class="nav-item active">
+              <div *ngIf="permission.access === 1 && permission.group === 'students'">
+                <a class="nav-link dropdown-item" routerLink="{{permission.link}}">{{permission.section}}</a>
+              </div>
+            </li>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Users
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let permission of permissions" class="nav-item active">
+              <div *ngIf="permission.access === 1 && permission.group === 'users'">
+                <a class="nav-link dropdown-item" routerLink="{{permission.link}}">{{permission.section}}</a>
+              </div>
+            </li>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Statistics
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let permission of permissions" class="nav-item active">
+              <div *ngIf="permission.access === 1 && permission.group === 'statistics'">
+                <a class="nav-link dropdown-item" routerLink="{{permission.link}}">{{permission.section}}</a>
+              </div>
+            </li>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="signOut()">Exit</a>
+          <a class="nav-link" (click)="signOut()">Logout</a>
         </li>
         <li class="nav-item">
           <a class="nav-link">{{afAuth.auth.currentUser.email}}</a>

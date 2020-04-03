@@ -106,11 +106,14 @@ class UserController {
                                             p.section,
                                             p.link,
                                             r.id,
-                                            r.name
+                                            r.name,
+                                            p.place,
+                                            p.group
                                     FROM user u
                                     JOIN role r ON r.id = u.role
                                     JOIN permissions p ON r.id = p.role 
-                                    WHERE u.email = ?`, [email]);
+                                    WHERE u.email = ?
+                                    ORDER BY place`, [email]);
       res.json(user);
     }
 

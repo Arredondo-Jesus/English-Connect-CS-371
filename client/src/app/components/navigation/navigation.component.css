@@ -6,3 +6,7 @@ li{
 .double-nav .breadcrumb-dn {
   color: #fff;
 }
+
+.dropdown-item{
+  position: relative;
+}

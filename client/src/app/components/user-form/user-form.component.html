@@ -14,7 +14,7 @@
         Email format not valid eg. test@test.com
       </div>
         <div class="form-group">
-            <input type="password" name="password" placeholder="Contraseña" *ngIf="edit == false" [(ngModel)]="fireBaseUser.password" class="form-control">
+            <input type="password" name="password" placeholder="Password" *ngIf="edit == false" [(ngModel)]="fireBaseUser.password" class="form-control">
         </div>
         <div class="form-group">
           <select name="rol" class="form-control" #rol="ngModel" [(ngModel)]="user.role" placeholder="Rol">

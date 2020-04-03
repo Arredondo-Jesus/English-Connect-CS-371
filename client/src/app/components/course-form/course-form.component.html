@@ -70,7 +70,7 @@
           </select>
         </div>
         <button class="btn btn-warning btn-block" (click)="edit ? updateCourse() : saveNewCourse()"
-                [disabled]="!name.valid || !level.valid || !year.valid || !time.valid || instructor.pristine">
+                [disabled]="!name.valid || !level.valid || !year.valid || !time.valid">
          <i class="fas fa-save"></i> Save
         </button>
       </form>
