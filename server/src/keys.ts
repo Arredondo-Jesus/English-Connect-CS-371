@@ -3,7 +3,7 @@ export default {
         host: 'localhost',
         user: 'creaigwt_mgs_use',
         password: 'PwiLd[v%S-Um',
-        database: 'creaigwt_english_connect_vallle',
+        database: 'creaigwt_english_connect_valle',
         port: 3306
     }
 }
