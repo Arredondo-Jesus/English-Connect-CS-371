@@ -1,0 +1,84 @@
+<h3 class="text-center">Attendance Per Group Report</h3>
+
+<!--<form #searchFrom="ngForm" (submit)="searchFrom.reset()">
+  <div class="row bg-primary d-flex flex-row card-header">
+    <div class="col-md-12 text-white text-center">Search By</div>
+  </div>
+  <div class="row d-flex flex-row card p-4" id="search">
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Name"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchAge" placeholder="Age"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchEmail" placeholder="Email"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchPhone" placeholder="Phone"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchMember" placeholder="Member"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchWard" placeholder="Ward"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchStatus" placeholder="Status"></div>
+    </div>
+
+    <div class="container col-md-2">
+      <button class="btn btn-primary" (click)="getStudents()">Reset</button>
+    </div>
+
+  </div>
+</form> -->
+
+<div>
+  <label for="Year">Year: </label>
+  <select>
+    <option value="2020">2020</option>
+    <option value="2019">2019</option>
+  </select>
+</div>
+
+<div>
+  <h4 class="text-center p-2">
+    {{filteredStudents[0].class_name}} {{filteredStudents[0].instructor_last_name}}
+  </h4>
+</div>
+
+<div class="row bg-primary d-flex flex-row card-header">
+  <div class="col-md-2 text-white text-center">Student</div>
+  <div class="col-md-2 text-white text-center">Course</div>
+  <div class="col-md-1 text-white text-center">Building</div>
+  <div class="col-md-1 text-white text-center">Day</div>
+  <div class="col-md-1 text-white text-center">Time</div>
+  <div class="col-md-1 text-white text-center">Year</div>
+  <div class="col-md-1 text-white text-center">% of Attendance</div>
+  <div class="col-md-1 text-white text-center">% of Absence</div>
+  <div class="col-md-2 text-white text-center">Instructor</div>
+</div>
+
+<div *ngFor="let student of filteredStudents let i = index">
+
+  <div id="table" class="row d-flex flex-row card p-1 ">
+    <div class="col-md-2 text-center">{{student.student_name}} {{student.student_last_name}}</div>
+    <div class="col-md-2 text-center">{{student.class_name}} {{student.class_level}}</div>
+    <div class="col-md-1 text-center">{{student.building}}</div>
+    <div class="col-md-1 text-center">{{student.day}}</div>
+    <div class="col-md-1 text-center">{{student.time}}</div>
+    <div class="col-md-1 text-center">{{student.year}}</div>
+    <div class="col-md-1 text-center">{{student.Yes}}{{'%'}}</div>
+    <div class="col-md-1 text-center">{{student.No}}{{'%'}} </div>
+    <div class="col-md-2 text-center">{{student.instructor_name}} {{student.instructor_last_name}} </div>
+  </div>
+
+  <div>
+    <h4 class="text-center p-2" *ngIf="next[i].class_id !== filteredStudents[i].class_id">
+      {{next[i].class_name}} {{next[i].instructor_name}} {{next[i].instructor_last_name}}
+    </h4>
+  </div>
+
+  <div class="row bg-primary d-flex flex-row card-header" *ngIf="next[i].class_id !== filteredStudents[i].class_id">
+    <div class="col-md-2 text-white text-center">Student</div>
+    <div class="col-md-2 text-white text-center">Course</div>
+    <div class="col-md-1 text-white text-center">Building</div>
+    <div class="col-md-1 text-white text-center">Day</div>
+    <div class="col-md-1 text-white text-center">Time</div>
+    <div class="col-md-1 text-white text-center">Year</div>
+    <div class="col-md-1 text-white text-center">% of Attendance</div>
+    <div class="col-md-1 text-white text-center">% of Absence</div>
+    <div class="col-md-2 text-white text-center">Instructor</div>
+  </div>
+</div>

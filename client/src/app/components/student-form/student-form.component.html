@@ -17,7 +17,7 @@
             Only letters are allowed
         </div>
         <div class="form-group">
-            <input type="text" name="Student's last name" #lastName="ngModel" placeholder="Apellido(s)" pattern="^[a-zA-Z\s]*$"
+            <input type="text" name="Student's last name" #lastName="ngModel" placeholder="Last Name" pattern="^[a-zA-Z\s]*$"
             required [(ngModel)]="student.last_name" class="form-control" autofocus>
           </div>
           <div class="alert alert-danger" *ngIf="lastName.value === '' && lastName.dirty">

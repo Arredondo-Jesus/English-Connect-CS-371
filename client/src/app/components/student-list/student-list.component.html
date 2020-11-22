@@ -1,21 +1,28 @@
 <h3 class="text-center">Students {{count}}</h3>
 
-<div class="row bg-primary d-flex flex-row card-header">
-  <div class="col-md-12 text-white text-center">Search By</div>
-</div>
-<div class="row d-flex flex-row card p-4" id="search">
-  <div class="col-md-6">
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Name"></div>
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchAge" placeholder="Age"></div>
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchEmail" placeholder="Email"></div>
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchPhone" placeholder="Phone"></div>
+<form #searchFrom="ngForm" (submit)="searchFrom.reset()">
+  <div class="row bg-primary d-flex flex-row card-header">
+    <div class="col-md-12 text-white text-center">Search By</div>
   </div>
-  <div class="col-md-6">
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchMember" placeholder="Member"></div>
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchWard" placeholder="Ward"></div>
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchStatus" placeholder="Status"></div>
+  <div class="row d-flex flex-row card p-4" id="search">
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Name"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchAge" placeholder="Age"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchEmail" placeholder="Email"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchPhone" placeholder="Phone"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchMember" placeholder="Member"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchWard" placeholder="Ward"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchStatus" placeholder="Status"></div>
+    </div>
+
+    <div class="container col-md-2">
+      <button class="btn btn-primary" (click)="getStudents()">Reset</button>
+    </div>
+
   </div>
-</div>
+</form>
 
 
 <div class="row bg-primary d-flex flex-row card-header">

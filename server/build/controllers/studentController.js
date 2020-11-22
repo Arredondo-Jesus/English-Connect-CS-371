@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.studentController = void 0;
 const database_1 = __importDefault(require("../database"));
 class StudentController {
     list(req, res) {
@@ -108,6 +109,31 @@ class StudentController {
                                             RIGHT OUTER JOIN student s ON a.student_id = s.id
                                             GROUP BY s.ward
                                             ORDER BY s.ward`);
+            res.json(students);
+        });
+    }
+    attendancePerStudent(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const students = yield database_1.default.query(`SELECT c.id AS 'class_id',
+                                                c.name AS 'class_name',
+                                                c.level,
+                                                c.day,
+                                                c.time,
+                                                c.year,
+                                                c.building,
+                                                s.id AS 'student_id',
+                                                s.name AS 'student_name',
+                                                s.last_name AS 'student_last_name',
+                                                i.name AS 'instructor_name',
+                                                i.last_name AS 'instructor_last_name',
+                                                ROUND(AVG(a.attendance_value) * 100, 0) AS 'Yes',
+                                                100 - ROUND(AVG(a.attendance_value) * 100, 0) AS 'No'
+                                        FROM course c
+                                        JOIN student s ON s.course_id = c.id
+                                        JOIN attendance a ON a.student_id = s.id
+                                        JOIN instructor i ON c.instructor_id = i.id
+                                        GROUP BY s.id
+                                        ORDER BY c.id, c.year, Yes`);
             res.json(students);
         });
     }

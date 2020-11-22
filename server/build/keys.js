@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     database: {
-        host: 'creatingux.com',
-        user: 'creat6ky_mgs_use',
-        password: 'pa55word',
-        database: 'creat6ky_english_connect_valle',
+        host: 'localhost',
+        user: 'creaigwt_mgs_use',
+        password: 'PwiLd[v%S-Um',
+        database: 'creaigwt_english_connect_db',
         port: 3306
     }
 };

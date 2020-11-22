@@ -217,5 +217,4 @@ export class StudentListComponent implements OnInit {
       return this.delete = true;
     }
   }
-
 }

@@ -99,6 +99,30 @@ class StudentController {
         res.json(students);
     }
 
+    public async attendancePerStudent (req: Request, res: Response){
+        const students = await pool.query(`SELECT c.id AS 'class_id',
+                                                c.name AS 'class_name',
+                                                c.level,
+                                                c.day,
+                                                c.time,
+                                                c.year,
+                                                c.building,
+                                                s.id AS 'student_id',
+                                                s.name AS 'student_name',
+                                                s.last_name AS 'student_last_name',
+                                                i.name AS 'instructor_name',
+                                                i.last_name AS 'instructor_last_name',
+                                                ROUND(AVG(a.attendance_value) * 100, 0) AS 'Yes',
+                                                100 - ROUND(AVG(a.attendance_value) * 100, 0) AS 'No'
+                                        FROM course c
+                                        JOIN student s ON s.course_id = c.id
+                                        JOIN attendance a ON a.student_id = s.id
+                                        JOIN instructor i ON c.instructor_id = i.id
+                                        GROUP BY s.id
+                                        ORDER BY c.id, c.year, Yes`);
+        res.json(students);
+    }
+
     public async create (req: Request, res: Response): Promise <void>{
         await pool.query('INSERT INTO student set ?', [req.body]);
         res.json({message: 'Student saved'});

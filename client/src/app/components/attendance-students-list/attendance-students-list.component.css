@@ -1,0 +1,25 @@
+#table:hover {
+  background-color: #B4E4FB;
+}
+
+input{
+  background-color: #FBF6AC;
+}
+
+input:focus{
+  width: 100%;
+  background-color: #FBF6AC;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+
+.card-header{
+  margin-top: 30px;
+}
+
+i{
+  font-size: 15px;
+}
+
+h3{
+  margin-top: 60px;
+}

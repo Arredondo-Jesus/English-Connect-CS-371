@@ -1,19 +1,26 @@
 <h3 class="text-center">Courses {{count}}</h3>
-<div class="row bg-primary d-flex flex-row card-header">
-  <div class="col-md-12 text-white text-center">Search By</div>
-</div>
-<div class="row d-flex flex-row card p-4" id="search">
-  <div class="col-md-6">
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Course Name"></div>
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchYear" placeholder="Course Year"></div>
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchDay" placeholder="Course Day"></div>
+
+<form #resetForm="ngForm" (submit)="resetForm.reset()">
+  <div class="row bg-primary d-flex flex-row card-header">
+    <div class="col-md-12 text-white text-center">Search By</div>
   </div>
-  <div class="col-md-6">
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchTime" placeholder="Course Time"></div>
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchBuilding" placeholder="Course Building"></div>
-    <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchInstructor" placeholder="Instructor"></div>
+  <div class="row d-flex flex-row card p-4" id="search">
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Course Name"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchYear" placeholder="Course Year"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchDay" placeholder="Course Day"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchTime" placeholder="Course Time"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchBuilding" placeholder="Course Building"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchInstructor" placeholder="Instructor"></div>
+    </div>
+
+    <div class="container col-md-3">
+      <button class="btn btn-primary" (click)="getCourses()">Reset Filters</button>
+    </div>
   </div>
-</div>
+</form>
 
 <div *ngFor="let course of filteredCourses let i=index">
   <div id="table" class="row d-flex flex-row card p-2" *ngIf="course.instructorEmail === email || admin === true">
