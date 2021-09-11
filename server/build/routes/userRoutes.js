@@ -4,7 +4,7 @@ const express_1 = require("express");
 const userController_1 = require("../controllers/userController");
 class UserRoutes {
     constructor() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.config();
     }
     config() {
@@ -12,6 +12,7 @@ class UserRoutes {
         this.router.get('/list', userController_1.userController.list);
         this.router.get('/:uid', userController_1.userController.getOne);
         this.router.get('/search/:uid', userController_1.userController.getUserById);
+        this.router.get('/search/email/:email', userController_1.userController.getUserByEmail);
         this.router.get('/permissions/:email', userController_1.userController.getUserPermissions);
         this.router.get('/roles/info', userController_1.userController.listRoles);
         this.router.post('/update/:uid', userController_1.userController.updateUser);

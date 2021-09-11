@@ -75,7 +75,6 @@ export class UserFormComponent implements OnInit {
   getDBUser(uid: string) {
     this.userService.getUserDB(uid).subscribe(
       res => {
-        console.log(res);
         this.user = res;
       },
       err => console.log(err)
@@ -95,7 +94,7 @@ export class UserFormComponent implements OnInit {
 
     this.userService.saveUser(this.fireBaseUser).subscribe(
       res => {
-        console.log(res);
+        
       },
       err => console.log(err)
     );
@@ -107,7 +106,7 @@ export class UserFormComponent implements OnInit {
 
     this.userService.updateUsers(this.user.uid, this.user).subscribe(
       res => {
-        console.log(res);
+        
         this.router.navigate(['users']);
       },
       err => console.log(err)
@@ -125,7 +124,7 @@ export class UserFormComponent implements OnInit {
     this.userService.updateUsers(this.fireBaseUser.uid, this.user)
         .subscribe(
           res => {
-            console.log(res);
+            
           },
           err => console.log(err)
         );
@@ -165,7 +164,7 @@ export class UserFormComponent implements OnInit {
     this.updateUser2();
     this.userService.updateUser(this.fireBaseUser.uid, this.fireBaseUser).subscribe(
       res => {
-        console.log(res);
+        
         this.fireBaseUser = res;
         this.edit = true;
         this.router.navigate(['users']);
@@ -217,7 +216,7 @@ export class UserFormComponent implements OnInit {
   deleteUserDB() {
     this.userService.deleteUsers(this.fireBaseUser.uid).subscribe(
       res => {
-        console.log(res);
+        
       },
       err => console.log(err)
     );

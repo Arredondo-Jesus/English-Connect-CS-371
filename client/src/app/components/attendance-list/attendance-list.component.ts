@@ -73,7 +73,6 @@ export class AttendanceListComponent implements OnInit {
     this.attendance.id = id;
     this.attendanceService.deleteAttendance(this.attendance.id, this.attendance).subscribe(
       res => {
-        console.log(res);
         this.getAttendance();
       },
       err => console.log(err)

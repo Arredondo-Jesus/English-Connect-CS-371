@@ -6,6 +6,7 @@ import { StudentsService} from '../../services/students.service';
 import { Course } from 'src/app/models/Course';
 import { Attendance } from 'src/app/models/Attendance';
 import { AttendanceService } from '../../services/attendance.service';
+import { DecryptService } from '../../services/decrypt.service';
 
 @Component({
   selector: 'app-student-list-group',
@@ -15,6 +16,7 @@ import { AttendanceService } from '../../services/attendance.service';
 export class StudentListGroupComponent implements OnInit {
 
   students: any = [];
+  encryptedStudents: any = [];
   count = 0;
 
   edit = false;
@@ -35,7 +37,7 @@ export class StudentListGroupComponent implements OnInit {
   };
 
   constructor(private studentService: StudentsService, private router: Router, private activatedRoute: ActivatedRoute,
-              private attendaceService: AttendanceService) { }
+              private attendaceService: AttendanceService, private decryptService: DecryptService) { }
 
   ngOnInit() {
     this.getByGroup();
@@ -48,7 +50,10 @@ export class StudentListGroupComponent implements OnInit {
 
     this.studentService.getStudentsByGroup(this.course.id, this.attendance.date).subscribe(
       res => {
-        this.students = res;
+        this.encryptedStudents = res;
+        this.encryptedStudents.forEach(element => {
+          this.students.push(this.decryptData(element));
+        });
         this.count = this.students.length;
       },
       err => console.log(err)
@@ -59,12 +64,18 @@ export class StudentListGroupComponent implements OnInit {
     this.attendance.date = this.activatedRoute.snapshot.params.date;
     this.attendaceService.updateAttendance(id, this.attendance).subscribe(
       res => {
-        console.log(res);
         this.getByGroup();
         this.edit = true;
       },
       err => console.log(err)
     );
+  }
+
+  decryptData(element: any) {
+    element.name = this.decryptService.decryptData(element.name);
+    element.last_name = this.decryptService.decryptData(element.last_name);
+
+    return element;
   }
 
 }

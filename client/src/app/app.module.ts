@@ -40,6 +40,7 @@ import { NonAuthNavigationComponent } from './components/non-auth-navigation/non
 import { GraphsListComponent } from './components/graphs-list/graphs-list.component';
 import { ChartsModule } from 'ng2-charts';
 import { AttendanceStudentsListComponent } from './components/attendance-students-list/attendance-students-list.component';
+import { ListInactiveComponent } from './components/list-inactive/list-inactive.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -76,7 +77,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     RegisterComponent,
     NonAuthNavigationComponent,
     GraphsListComponent,
-    AttendanceStudentsListComponent
+    AttendanceStudentsListComponent,
+    ListInactiveComponent
   ],
   imports: [
     BrowserModule,

@@ -1,31 +1,27 @@
 #table:hover {
-  background-color: #B4E4FB;
+  background-color: #b4e4fb;
 }
 
-input{
-  background-color: #FBF6AC;
-}
-
-#search{
+#search {
   margin-bottom: 20px;
 }
 
-.header{
-  background-color: #E0E0E0;
+.header {
+  background-color: #e0e0e0;
 }
 
-.row .div{
+.row .div {
   font-size: 14px;
 }
 
-.card-header{
+.card-header {
   margin-top: 30px;
 }
 
-i{
+i {
   font-size: 15px;
 }
 
-h3{
+h3 {
   margin-top: 60px;
 }

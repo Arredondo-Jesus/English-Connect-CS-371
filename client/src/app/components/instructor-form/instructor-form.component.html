@@ -28,7 +28,7 @@
           [(ngModel)]="instructor.email" class="form-control" autofocus>
         </div>
         <div class="alert alert-danger" *ngIf="email.value === '' && email.dirty">
-          Rrequired Field
+          Required Field
       </div>
       <div class="alert alert-danger" *ngIf="email?.errors?.email && email.touched && email.dirty">
           Email format not valid eg. test@test.com
@@ -43,8 +43,26 @@
         <div class="alert alert-danger" *ngIf="phone.invalid && phone.dirty && phone.value !== ''">
             Only numbers are allowed
         </div>
+        <div class="form-group">
+          <input type="text" name="stake" #stake="ngModel" pattern="^[0-9a-zA-Z\s]*$"
+          placeholder="Stake" required [(ngModel)]="instructor.stake" class="form-control">
+      </div>
+      <div class="alert alert-danger" *ngIf="stake.value === '' && stake.dirty">
+          Required Field
+      </div>
+      <div class="alert alert-danger" *ngIf="stake.invalid && stake.dirty && stake.value !== ''">
+          No special characters allowed
+      </div>
+       <!--<select name="getCourse" class="form-control" #instructor="ngModel"
+                  [(ngModel)]="instructor.course_id">
+            <option value="0" disabled>Select One</option>
+            <option *ngFor="let instructor of instructors let i = index"
+                    [ngValue]="instructor.course_id"
+                    [selected]="(instructors.course_id === course.id && edit === true) || (instructor.id == 0 && edit === false)"
+                    >{{instructor.name}} {{instructor.last_name}}</option>
+          </select>-->
         <button class="btn btn-warning btn-block" (click)="edit ? updateInstructor() : saveNewInstructor()"
-        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid">
+        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || !stake.valid">
           <i class="fas fa-save"></i> Save
         </button>
       </form>

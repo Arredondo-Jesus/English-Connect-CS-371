@@ -6,7 +6,12 @@ import { StudentsService } from '../../services/students.service';
 import { Course } from 'src/app/models/Course';
 import { UserService } from 'src/app/services/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { DecryptService } from '../../services/decrypt.service';
+import { Permission } from 'src/app/models/Permission';
 
+interface HTMLInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+}
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
@@ -14,24 +19,34 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class CourseListComponent implements OnInit {
 
-  courses: any = [];
-  filteredCourses: any = [];
-  permissions: any = [];
+  courses: Course[] = [];
+  filteredCourses: Course[] = [];
+
+  public permissions: Permission[] = [{
+    id: 0,
+    access: 0
+  }];
+
+  temp: any = [];
+  
   email =  '';
   count = 0;
+  file: File;
 
   private searchValue: string;
 
   course: Course = {
     id: 0,
     name: '',
-    year: '',
+    generation: '',
     status: 'inactive',
     count: 0,
-    instructorName: '',
-    last_name: '',
-    instructorEmail: '',
-    building: ''
+    instructor_name: '',
+    instructor_last_name: '',
+    instructor_email: '',
+    instructor_id: 0,
+    start: new Date(),
+    stake: ''
   };
 
   admin = false;
@@ -54,79 +69,96 @@ export class CourseListComponent implements OnInit {
       course.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
-  get seachYear(): string {
+  get seachDay_1(): string {
     return this.searchValue;
   }
 
-  set searchYear(value: string) {
+  set searchDay_1(value: string) {
     this.searchValue = value;
-    this.filteredCourses = this.filterYear(value);
+    this.filteredCourses = this.filterDay_1(value);
     this.count = this.filteredCourses.length;
   }
 
-  filterYear(searchString: string) {
+  filterDay_1(searchString: string) {
     return this.filteredCourses.filter(course =>
-      course.year.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+      course.day_1.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
-  get seachDay(): string {
+  get seachDay_2(): string {
     return this.searchValue;
   }
 
-  set searchDay(value: string) {
+  set searchDay_2(value: string) {
     this.searchValue = value;
-    this.filteredCourses = this.filterDay(value);
+    this.filteredCourses = this.filterDay_2(value);
     this.count = this.filteredCourses.length;
   }
 
-  filterDay(searchString: string) {
+  filterDay_2(searchString: string) {
     return this.filteredCourses.filter(course =>
-      course.day.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+      course.day_2.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
-  get seachTime(): string {
+  get seachTime_1(): string {
     return this.searchValue;
   }
 
-  set searchTime(value: string) {
+  set searchTime_1(value: string) {
     this.searchValue = value;
-    this.filteredCourses = this.filterTime(value);
+    this.filteredCourses = this.filterTime_1(value);
     this.count = this.filteredCourses.length;
   }
 
-  filterTime(searchString: string) {
+  filterTime_1(searchString: string) {
     return this.filteredCourses.filter(course =>
-      course.time.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+      course.time_1.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
-  get seachBuilding(): string {
+  get seachTime_2(): string {
     return this.searchValue;
   }
 
-  set searchBuilding(value: string) {
+  set searchTime_2(value: string) {
     this.searchValue = value;
-    this.filteredCourses = this.filterBuilding(value);
+    this.filteredCourses = this.filterTime_2(value);
     this.count = this.filteredCourses.length;
   }
 
-  filterBuilding(searchString: string) {
+  filterTime_2(searchString: string) {
     return this.filteredCourses.filter(course =>
-      course.building.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+      course.time_2.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
-  get seachStudents(): string {
+  get seachGeneration(): string {
     return this.searchValue;
   }
 
-  set searchStudents(value: string) {
+  set searchGeneration(value: string) {
     this.searchValue = value;
-    this.filteredCourses = this.filterStudents(value);
+    this.filteredCourses = this.filterGeneration(value);
     this.count = this.filteredCourses.length;
   }
 
-  filterStudents(searchString: string) {
+  filterGeneration(searchString: string) {
     return this.filteredCourses.filter(course =>
-      course.count.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+      course.generation.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
+
+
+  
+  get seachStake(): string {
+    return this.searchValue;
+  }
+
+  set searchStake(value: string) {
+    this.searchValue = value;
+    this.filteredCourses = this.filterStake(value);
+    this.count = this.filteredCourses.length;
+  }
+
+  filterStake(searchString: string) {
+    return this.filteredCourses.filter(course =>
+      course.stake.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
   get seachInstructor(): string {
@@ -141,11 +173,11 @@ export class CourseListComponent implements OnInit {
 
   filterInstructor(searchString: string) {
     return this.filteredCourses.filter(course =>
-      course.instructorName.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+      course.instructor_name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
   constructor(private coursesService: CoursesService, private studentService: StudentsService, private router: Router,
-              private userService: UserService, private afAuth: AngularFireAuth, private activatedRoute: ActivatedRoute) { }
+              private userService: UserService, private afAuth: AngularFireAuth, private decryptDataService: DecryptService) { }
 
   ngOnInit() {
     this.email = this.afAuth.auth.currentUser.email;
@@ -154,11 +186,18 @@ export class CourseListComponent implements OnInit {
   }
 
   getCourses() {
+    this.filteredCourses = [];
     this.coursesService.getCourses().subscribe(
       res => {
-        this.courses = res;
-        this.filteredCourses = this.courses;
-        this.count = this.courses.length;
+
+        this.temp = res;
+        this.courses = this.temp;
+        
+        this.courses.forEach(element => {
+          this.filteredCourses.push(this.decryptData(element));  
+        });
+
+        this.count = this.filteredCourses.length;
       },
       err => console.log(err)
     );
@@ -179,7 +218,8 @@ export class CourseListComponent implements OnInit {
   getPermissions(email: string) {
     this.userService.getUserPermissions(email).subscribe(
       res => {
-        this.permissions = res;
+        this.temp = res;
+        this.permissions = this.temp;
         if (this.permissions[0].name === 'admin') {
           this.admin = true;
         }
@@ -193,5 +233,36 @@ userDeletionPreference() {
     return this.delete = true;
   }
 }
+
+
+onFileChange(event: HTMLInputEvent) {
+  if (event.target.files && event.target.files[0]) {
+    this.file = <File>event.target.files[0];
+  }
+}
+
+onFileUpload () {
+  this.coursesService.uploadFile(this.file).subscribe(
+    res => {
+      this.getCourses();
+    },
+    err => console.log(err)
+  )}
+
+  deleteCourseList(){
+    this.coursesService.deleteCourseList().subscribe(
+      res => {
+        this.getCourses();
+      },
+      err => console.log(err)
+    )}
+
+    decryptData(element: any) {
+      
+          element.instructor_name = this.decryptDataService.decryptData(element.instructor_name);
+          element.instructor_last_name = this.decryptDataService.decryptData(element.instructor_last_name);
+          element.instructor_email = this.decryptDataService.decryptData(element.instructor_email);
+      return element;
+    }
 
 }

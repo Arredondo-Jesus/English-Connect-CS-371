@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Attendance } from '../models/Attendance';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,8 @@ export class AttendanceService {
 
   constructor(private http: HttpClient) { }
 
-  PROD = '/api';
-  DEV = 'localhost:3000/api';
-  API_URI = this.PROD;
+  HOST = environment.env.HOST;
+  API_URI = this.HOST;
 
   geAttendance() {
     return this.http.get(`${this.API_URI}/attendance`);

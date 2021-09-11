@@ -7,4 +7,6 @@ export interface User {
   roleName?: string;
   number_login?: number;
   status?: string;
+  secret?: string;
+  token?: string;
 }

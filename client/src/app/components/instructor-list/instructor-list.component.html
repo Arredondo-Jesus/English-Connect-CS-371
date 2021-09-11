@@ -1,17 +1,58 @@
 <h3 class="text-center">Instructors {{count}}</h3>
 
-<div class="row bg-primary d-flex flex-row card-header">
-  <div class="col-md-3 text-white text-center">Name</div>
-  <div class="col-md-3 text-white text-center">Email</div>
-  <div class="col-md-3 text-white text-center">Phone Number</div>
-</div>
-<div id="table" class="row d-flex flex-row card" *ngFor="let instructor of instructors">
-  <div class="col-md-3 text-center">{{instructor.name}} {{instructor.last_name}}</div>
-  <div class="col-md-3 text-center">{{instructor.email}}</div>
-  <div class="col-md-3 text-center">{{instructor.phone}}</div>
+<form #searchFrom="ngForm" (submit)="searchFrom.reset()">
+  <div class="row bg-primary d-flex flex-row card-header">
+    <div class="col-md-12 text-white text-center">Search By</div>
+  </div>
+  <div class="row d-flex flex-row card p-4" id="search">
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Name"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchLastName" placeholder="Last Name"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchEmail" placeholder="Email"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchPhone" placeholder="Phone"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchStake" placeholder="Stake"></div>
+    </div>
+    
+    <div class="container col-md-12 p-3">
+      <button class="btn btn-primary" (click)="getInstructors()">Reset Filters</button>
 
+      <input type="file" class="d-none" (change)="onFileChange($event)" #uploadFile>
+
+      <button class="btn btn-danger m-4"
+        (click)="deleteInstructorList()"
+        (disabled)="!file">
+        Delete
+      </button>
+
+      <button class="btn btn-warning m-4" (click)="uploadFile.click()">
+        Select File
+      </button>
+
+      <button class="btn btn-success"
+              (click)="onFileUpload()">
+        Upload
+      </button>
+    </div>
+
+  </div>
+</form>
+
+
+<div class="row bg-primary d-flex flex-row card-header">
+  <div class="col-md-2 text-white text-center">Name</div>
+  <div class="col-md-3 text-white text-center">Email</div>
+  <div class="col-md-2 text-white text-center">Phone Number</div>
+  <div class="col-md-3 text-white text-center">Stake</div>
+</div>
+<div id="table" class="row d-flex flex-row card" *ngFor="let instructor of filteredInstructors">
+  <div class="col-md-2 text-center">{{instructor.name}} {{instructor.last_name}}</div>
+  <div class="col-md-3 text-center">{{instructor.email}}</div>
+  <div class="col-md-2 text-center">{{instructor.phone}}</div>
+  <div class="col-md-3 text-center">{{instructor.stake}}</div>
     <div class="text-center">
-      <button  [routerLink]="['/instructor/edit', instructor.id]" class="btn btn-success p-2" title="Edit"
+      <button  [routerLink]="['/instructor', instructor.id]" class="btn btn-success p-2" title="Edit"
       ><i class="fas fa-edit"></i> Edit</button>
     </div>
     <div class="text-center">

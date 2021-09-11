@@ -29,9 +29,9 @@ class AttendanceController {
     public async getGroup (req: Request, res: Response): Promise<any>{
         const { id } = req.params;
         const attendance = await pool.query(`SELECT s.id,
-                                                    s.name, 
-                                                    s.last_name,
-                                                    s.status
+                                            s.name,
+                                            s.last_name,
+                                            s.status
                                             FROM student s
                                             WHERE s.status = 'active'
                                             AND course_id = ?`, [id]);

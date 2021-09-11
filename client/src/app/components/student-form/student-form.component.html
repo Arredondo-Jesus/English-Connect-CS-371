@@ -26,14 +26,6 @@
           <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.dirty && lastName.value !== ''">
               Only letters are allowed
           </div>
-          <div class="form-group">
-            <select name="age" class="form-control" #age="ngModel"
-                    [(ngModel)]="student.age">
-              <option *ngFor="let age of ages let i = index"
-              [ngValue]="age"
-              [selected]="student.age === age && edit === true">{{age}}</option>
-            </select>
-          </div>
         <div class="form-group">
             <input type="email" name="email" #email="ngModel" required email placeholder="Student's email"
             [(ngModel)]="student.email" class="form-control" autofocus>
@@ -55,23 +47,17 @@
             Only 10 digits are allowed
         </div>
         <div class="form-group">
-          <select name="ward" class="form-control" #ward="ngModel"
-                  [(ngModel)]="student.ward">
-            <option *ngFor="let ward of wards let i = index"
-            [ngValue]="ward"
-            [selected]="student.ward === ward && edit === true">{{ward}}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <select name="member" class="form-control" #member="ngModel"
-                  [(ngModel)]="student.member">
-            <option *ngFor="let member of members let i = index"
-            [ngValue]="member"
-            [selected]="student.member === member && edit === true">{{member}}</option>
-          </select>
-        </div>
+          <input type="text" name="stake" #stake="ngModel"placeholder="Stake" pattern="^[a-zA-Z\s]*$"
+        required [(ngModel)]="student.stake" class="form-control" autofocus>
+      </div>
+      <div class="alert alert-danger" *ngIf="stake.value === '' && stake.dirty">
+          Required Field
+      </div>
+      <div class="alert alert-danger" *ngIf="stake.invalid && stake.dirty && name.value !== ''">
+          Only letters are allowed
+      </div>
         <button class="btn btn-warning btn-block" (click)="edit ? updateStudent() : saveNewStudent()"
-        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || registration">
+        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || !stake.valid">
           <i class="fas fa-save"></i> Save
         </button>
       </form>

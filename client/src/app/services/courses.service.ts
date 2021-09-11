@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Course } from '../models/Course';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
 
-  PROD = '/api';
-  DEV = 'localhost:3000/api';
-  API_URI = this.PROD;
-
+  HOST = environment.env.HOST;
+  API_URI = this.HOST;
+  
   constructor(private http: HttpClient) { }
 
   getCourses() {
@@ -36,5 +36,15 @@ export class CoursesService {
 
   updateCourse(id: string | number, updatedCourse: Course) {
     return this.http.put(`${this.API_URI}/courses/${id}`, updatedCourse);
+  }
+
+  deleteCourseList() {
+    return this.http.delete(`${this.API_URI}/courses/uploaded`);
+  }
+
+  uploadFile(file: File) {
+    const formData = new FormData;
+    formData.append('csv', file);
+    return this.http.post(`${this.API_URI}/courses/upload`, formData);
   }
 }

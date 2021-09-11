@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node start build/index.js", 
+    "start": "node start build/index.js",
     "build": "tsc -w",
     "dev": "nodemon build/index.js"
   },
@@ -12,20 +12,32 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/crypto-js": "^4.0.1",
+    "@types/node": "^14.14.41",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "fast-csv": "^4.3.6",
     "firebase-admin": "^8.8.0",
-    "morgan": "^1.9.1",
+    "fs-extra": "^0.8.1",
+    "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "nan": "^2.14.0",
-    "promise-mysql": "^3.3.1"
+    "promise-mysql": "^3.3.2",
+    "qrcode": "^1.4.4",
+    "speakeasy": "^2.0.0",
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.1",
+    "@types/fs-extra": "^9.0.11",
     "@types/morgan": "^1.7.37",
     "@types/multer": "^1.4.2",
+    "@types/qrcode": "^1.4.0",
+    "@types/speakeasy": "^2.0.5",
     "nodemon": "^1.19.3"
   },
   "engines": {

@@ -37,6 +37,12 @@ class UserController {
 
     }
 
+    public async getUserByEmail (req: Request, res: Response) {
+      const email  = req.params.email;
+      const users = await pool.query(`SELECT * FROM user u WHERE u.email = ?`, [email]);
+      res.json(users);
+    }
+
     
     public async create (req: Request, res: Response): Promise <void>{
           await pool.query('INSERT INTO user set ?', [req.body]);
@@ -102,6 +108,7 @@ class UserController {
     public async getUserPermissions(req: Request, res: Response) {
       const { email } = req.params;
       const user = await pool.query(`SELECT u.email,
+                                            u.secret,
                                             p.access,
                                             p.section,
                                             p.link,

@@ -1,0 +1,43 @@
+<h3 class="text-center"> Inactive Students {{count}}</h3>
+
+<form #searchFrom="ngForm" (submit)="searchFrom.reset()">
+  <div class="row bg-primary d-flex flex-row card-header">
+    <div class="col-md-12 text-white text-center">Search By</div>
+  </div>
+  <div class="row d-flex flex-row card p-4" id="search">
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Name"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchEmail" placeholder="Email"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchPhone" placeholder="Phone"></div>
+    </div>
+    
+    <div class="container col-md-12 p-3">
+      <button class="btn btn-primary" (click)="getStudents()">Reset Filters</button>
+    </div>
+
+  </div>
+</form>
+
+
+<div class="row bg-primary d-flex flex-row card-header">
+  <div class="col-md-3 text-white text-center">Name</div>
+  <div class="col-md-3 text-white text-center">Email</div>
+  <div class="col-md-2 text-white text-center">Phone</div>
+  <div class="col-md-1 text-white text-center">Status</div>
+</div>
+
+<div id="table" class="row d-flex flex-row card p-1" *ngFor="let student of filteredStudents let i = index">
+  <div class="col-md-3 text-center">{{student.name}} {{student.last_name}}</div>
+  <div class="col-md-3 text-center">{{student.email}}</div>
+  <div class="col-md-2 text-center">{{student.phone}}</div>
+  <div class="col-md-1 text-center">{{student.status}} </div>
+
+  <div class="text-center" *ngIf="permissions[0].id == 1">
+    <button (click)="activateStudent(student)" class="btn btn-success p-2" title="Edit">
+      <i class="fas fa-edit"> Return to Active</i>
+    </button>
+  </div>
+</div>
+

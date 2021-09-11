@@ -3,15 +3,15 @@ import { HttpClient } from '@angular/common/http';
 
 import { User } from '../models/User';
 import { FireBaseUser } from '../models/fireBaseUser';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  PROD = '/api';
-  DEV = 'localhost:3000/api';
-  API_URI = this.PROD;
+  HOST = environment.env.HOST;
+  API_URI = this.HOST;
 
   constructor(private http: HttpClient) { }
 
@@ -47,6 +47,10 @@ export class UserService {
     return this.http.get(`${this.API_URI}/users/search/${uid}`);
   }
 
+  getUserByEmail(email: string) {
+    return this.http.get(`${this.API_URI}/users/search/email/${email}`);
+  }
+
   getUserPermissions(email: string) {
     return this.http.get(`${this.API_URI}/users/permissions/${email}`);
   }
@@ -57,5 +61,17 @@ export class UserService {
 
   getRoles() {
     return this.http.get(`${this.API_URI}/users/roles/info`);
+  }
+
+  setUpMFA() {
+    return this.http.get(`${this.API_URI}/login/qr`);
+  }
+
+  verifyCode(user: User) {
+    return this.http.post(`${this.API_URI}/login/verifytoken`, user);
+  }
+
+  saveSecret(user : User) {
+    return this.http.post(`${this.API_URI}/login/secret/update`, user);
   }
 }

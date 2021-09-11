@@ -22,13 +22,12 @@ export class RegisterComponent implements OnInit {
   course: Course = {
     id: 0,
     name: '',
-    year: new Date().getFullYear().toString(),
+    generation: '',
     status: 'inactive',
     count: 0,
-    instructorName: '',
-    last_name: '',
-    instructorEmail: '',
-    building: ''
+    instructor_name: '',
+    instructor_last_name: '',
+    instructor_email: ''
   };
 
   private searchValue: string;
@@ -149,8 +148,7 @@ export class RegisterComponent implements OnInit {
     this.coursesService.getCourses().subscribe(
       res => {
         this.courses = res;
-        this.filteredCourses = this.filterYear(this.course.year);
-        console.log(res);
+        this.filteredCourses = this.filterYear(this.course.generation);
         this.count = this.courses.length;
       },
       err => console.log(err)

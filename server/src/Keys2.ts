@@ -4,6 +4,7 @@ export default {
         user: 'creaigwt_mgs_use',
         password: 'PwiLd[v%S-Um',
         database: 'creaigwt_users_db_valle',
-        port: 3306
+        port: 3306,
+        timezone: 'CST'
     }
 }

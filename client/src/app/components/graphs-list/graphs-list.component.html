@@ -1,16 +1,16 @@
 
-<div class="container row" id="graphs">
-  <div class="col-md-6 graph" style="display: block" *ngIf="pieChartLabels && pieChartData">
-    <h4 class="text-center">Student Per Ward</h4>
+<div class="container row container-fluid"> id="graphs">
+  <!--<div class="col-md-12 graph" style="display: block" *ngIf="pieChartLabels && pieChartData">
+    <h4 class="text-center">Student Per Stake</h4>
     <canvas baseChart
             [data]="pieChartData"
             [labels]="pieChartLabels"
             [chartType]="pieChartType"
             [colors]="pieChartColor">
     </canvas>
-  </div>
+  </div>-->
 
-  <div class="col-md-6 graph" style="display: block">
+  <div class="col-md-12 graph" style="display: block">
     <h4 class="text-center">%  of attendance Per Group</h4>
     <canvas baseChart
             [datasets]="barChartData"

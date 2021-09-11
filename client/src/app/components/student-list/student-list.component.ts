@@ -6,7 +6,10 @@ import { Student } from 'src/app/models/Student';
 import { Course } from 'src/app/models/Course';
 import { UserService } from 'src/app/services/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-
+import { DecryptService } from '../../services/decrypt.service';
+interface HTMLInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+}
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
@@ -18,6 +21,7 @@ export class StudentListComponent implements OnInit {
   filteredStudents: any = [];
   permissions: any = [];
   count = 0;
+  file: File;
 
   private searchValue: string;
 
@@ -153,11 +157,13 @@ export class StudentListComponent implements OnInit {
   }
 
   constructor(private studentsService: StudentsService, private router: Router, private activatedRoute: ActivatedRoute,
-              private userService: UserService, private afAuth: AngularFireAuth) { }
+              private userService: UserService, private afAuth: AngularFireAuth,
+              private decryptService: DecryptService ) { }
 
   ngOnInit() {
     const params = this.activatedRoute.snapshot.params;
     if (params.id) {
+      this.getPermissions(this.afAuth.auth.currentUser.email);
       this.getStudentByGroup();
     } else {
       this.getPermissions(this.afAuth.auth.currentUser.email);
@@ -166,10 +172,14 @@ export class StudentListComponent implements OnInit {
   }
 
   getStudents() {
+    this.filteredStudents = [];
+    
     this.studentsService.getStudents().subscribe(
       res => {
         this.students = res;
-        this.filteredStudents = this.students;
+        this.students.forEach(element => {
+          this.filteredStudents.push(this.decryptData(element));
+        });
         this.count = this.filteredStudents.length;
       },
       err => console.log(err)
@@ -181,7 +191,9 @@ export class StudentListComponent implements OnInit {
     this.studentsService.getStudentsInGroup(this.course.id).subscribe(
       res => {
         this.students = res;
-        this.filteredStudents = this.students;
+        this.students.forEach(element => {
+          this.filteredStudents.push(this.decryptData(element));
+        });
         this.count = this.filteredStudents.length;
       },
       err => console.log(err)
@@ -217,4 +229,35 @@ export class StudentListComponent implements OnInit {
       return this.delete = true;
     }
   }
+
+  onFileChange(event: HTMLInputEvent) {
+    if (event.target.files && event.target.files[0]) {
+      this.file = <File>event.target.files[0];
+    }
+  }
+
+  onFileUpload () {
+    this.studentsService.uploadFile(this.file).subscribe(
+      res => {
+        this.getStudents();
+      },
+      err => console.log(err)
+    )}
+
+    deleteStudentList(){
+      this.studentsService.deleteStudentsList().subscribe(
+        res => {
+          this.getStudents();
+        },
+        err => console.log(err)
+      )}
+
+      decryptData(element: any) {
+        element.name = this.decryptService.decryptData(element.name);
+        element.last_name = this.decryptService.decryptData(element.last_name);
+        element.email = this.decryptService.decryptData(element.email);
+        element.phone = this.decryptService.decryptData(element.phone);
+        
+        return element;
+      }
 }

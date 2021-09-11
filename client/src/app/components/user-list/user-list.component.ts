@@ -40,7 +40,6 @@ export class UserListComponent implements OnInit {
   getUsersDB() {
     this.userService.getUsersDB().subscribe(
       res => {
-        console.log(res);
         this.users = res;
         this.count = this.users.length;
         this.users.forEach(user => {
@@ -54,7 +53,6 @@ export class UserListComponent implements OnInit {
   getFirebaseUsers() {
     this.userService.getUsers().subscribe(
       res => {
-        console.log(res);
         this.fireBaseUsers = res;
       },
       err => console.log(err)
@@ -64,7 +62,7 @@ export class UserListComponent implements OnInit {
   getDBUser(uid: string) {
     this.userService.getUserDB(uid).subscribe(
       res => {
-        console.log(res);
+        
         this.user = res;
       },
       err => console.log(err)
@@ -74,7 +72,7 @@ export class UserListComponent implements OnInit {
   getUsers() {
     this.userService.getUsers().subscribe(
       res => {
-        console.log(res);
+        
         this.users = res;
       },
       err => console.log(err)
@@ -85,7 +83,7 @@ export class UserListComponent implements OnInit {
     this.user.uid = uid;
     this.userService.deleteUsers(this.user.uid).subscribe(
       res => {
-        console.log(res);
+        
         this.getUsers();
       },
       err => console.log(err)

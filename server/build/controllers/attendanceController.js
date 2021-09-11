@@ -44,9 +44,9 @@ class AttendanceController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const attendance = yield database_1.default.query(`SELECT s.id,
-                                                    s.name, 
-                                                    s.last_name,
-                                                    s.status
+                                            s.name,
+                                            s.last_name,
+                                            s.status
                                             FROM student s
                                             WHERE s.status = 'active'
                                             AND course_id = ?`, [id]);

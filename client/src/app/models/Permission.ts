@@ -1,5 +1,9 @@
 export interface Permission {
-  access?: 0;
-  section?: '';
-  link?: '';
+  id?: number;
+  access?: number;
+  name?: string;
+  section?: string;
+  link?:string;
+  group?:string;
+  secret?:string;
 }

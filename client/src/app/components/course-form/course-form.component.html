@@ -4,6 +4,16 @@
     <div class="card-body">
       <form #courseForm="ngForm">
         <div class="form-group">
+          <input type="text" name="id" #id="ngModel" pattern="[0-9]*$"
+          placeholder="Id" required [(ngModel)]="course.id" class="form-control">
+      </div>
+      <div class="alert alert-danger" *ngIf="id.value === '' && id.dirty">
+          Required Field
+      </div>
+      <div class="alert alert-danger" *ngIf="id.invalid && id.dirty && id.value !== ''">
+          Only numbers allowed
+      </div>
+        <div class="form-group">
           <input type="text" name="course" #name="ngModel" placeholder="Course name" pattern="^[a-zA-Z\s]*$"
           required [(ngModel)]="course.name" class="form-control" autofocus>
         </div>
@@ -14,63 +24,77 @@
             Only letters are allowed
         </div>
         <div class="form-group">
-            <input type="text" name="level" #level="ngModel" pattern="[0-3]{1}"
+            <input type="text" name="level" #level="ngModel" pattern="[0-2]{1}"
             placeholder="Level" required [(ngModel)]="course.level" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="level.value === '' && level.dirty">
             Required Field
         </div>
         <div class="alert alert-danger" *ngIf="level.invalid && level.dirty && level.value !== ''">
-            Only numbers from 1 to 3 are allowed
+            Only numbers 1 and 2 are allowed
         </div>
         <div class="form-group">
-            <input type="text" name="year" #year="ngModel" pattern="[0-9]{4}"
-            placeholder="Year in which the course wil be taught" required [(ngModel)]="course.year" class="form-control">
+            <input type="text" name="generation" #generation="ngModel" pattern="^[0-9a-zA-Z\s]*$"
+            placeholder="Generation" required [(ngModel)]="course.generation" class="form-control">
         </div>
-        <div class="alert alert-danger" *ngIf="year.value === '' && year.dirty">
+        <div class="alert alert-danger" *ngIf="generation.value === '' && generation.dirty">
             Required Field
         </div>
-        <div class="alert alert-danger" *ngIf="year.invalid && year.dirty && year.value !== ''">
-            Only 4 numbers are allowed
+        <div class="alert alert-danger" *ngIf="generation.invalid && generation.dirty && generation.value !== ''">
+            No special characters allowed
         </div>
         <div class="form-group">
-          <select name="day" class="form-control"
-                  [(ngModel)]="course.day">
+          <select name="day_1" class="form-control"
+                  [(ngModel)]="course.day_1">
             <option *ngFor="let day of days let i = index"
             [ngValue]="day"
-            [selected]="course.day === day && edit === true">{{day}}</option>
+            [selected]="course.day_1 === day && edit === true">{{day}}</option>
           </select>
         </div>
         <div class="form-group">
-            <input type="text" name="time" #time="ngModel" placeholder="Time of the course" pattern="\b((1[0-2]|0?[1-9]):([0-5][0-9]) ([AP][M]))"
-            required [(ngModel)]="course.time" class="form-control">
+            <input type="text" name="time_1" #time_1="ngModel" placeholder="Time 1 of the course" pattern=""
+            required [(ngModel)]="course.time_1" class="form-control">
         </div>
-        <div class="alert alert-danger" *ngIf="time.invalid && time.dirty && time.value !== ''">
+        <div class="alert alert-danger" *ngIf="time_1.invalid && time_1.dirty && time_1.value !== ''">
             The time has the following format h:mm PM / AM
         </div>
-        <div class="alert alert-danger" *ngIf="time.value === '' && time.dirty">
+        <div class="alert alert-danger" *ngIf="time_1.value === '' && time_1.dirty">
             Required Field
         </div>
         <div class="form-group">
-          <select name="building" class="form-control"
-                  [(ngModel)]="course.building">
-            <option *ngFor="let building of buildings let i = index"
-            [ngValue]="building"
-            [selected]="course.building === building && edit === true">{{building}}</option>
+          <select name="day_2" class="form-control"
+                  [(ngModel)]="course.day_2">
+            <option *ngFor="let day of days let i = index"
+            [ngValue]="day"
+            [selected]="course.day_2 === day && edit === true">{{day}}</option>
           </select>
         </div>
         <div class="form-group">
-          <select name="getIntructor" class="form-control" #instructor="ngModel"
+            <input type="text" name="time_2" #time_2="ngModel" placeholder="Time 2 of the course" pattern=""
+            required [(ngModel)]="course.time_2" class="form-control">
+        </div>
+        <div class="alert alert-danger" *ngIf="time_2.invalid && time_2.dirty && time_2.value !== ''">
+            The time has the following format h:mm PM / AM
+        </div>
+        <div class="alert alert-danger" *ngIf="time_2.value === '' && time_2.dirty">
+            Required Field
+        </div>
+        <div class="form-group">
+          <select name="getInstructor" class="form-control" #instructor="ngModel"
                   [(ngModel)]="course.instructor_id">
             <option value="0" disabled>Select One</option>
             <option *ngFor="let instructor of instructors let i = index"
                     [ngValue]="instructor.id"
                     [selected]="(instructors.id === course.instructor_id && edit === true) || (instructor.id == 0 && edit === false)"
-                    >{{instructor.name}} {{instructor.last_name}}</option>
+                    >{{instructor.name}} {{instructor.last_name}}
+                  </option>
           </select>
         </div>
+        <div class="form-group">
+          <input class="form-control" type="date" name="date"  [(ngModel)]="course.start">
+        </div>
         <button class="btn btn-warning btn-block" (click)="edit ? updateCourse() : saveNewCourse()"
-                [disabled]="!name.valid || !level.valid || !year.valid || !time.valid">
+                [disabled]="!name.valid || !level.valid || !generation.valid || !time_1.valid || !time_2.valid || !id.valid">
          <i class="fas fa-save"></i> Save
         </button>
       </form>

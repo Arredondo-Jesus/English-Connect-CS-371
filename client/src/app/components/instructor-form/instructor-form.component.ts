@@ -2,7 +2,8 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { InstructorsService } from '../../services/instructors.service';
 import { Instructor } from 'src/app/models/Instructor';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { EncryptService } from '../../services/encrypt.service';
+import { DecryptService } from '../../services/decrypt.service';
 @Component({
   selector: 'app-instructor-form',
   templateUrl: './instructor-form.component.html',
@@ -10,7 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class InstructorFormComponent implements OnInit {
 
-  constructor(private instructorService: InstructorsService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private instructorService: InstructorsService, private router: Router, private activatedRoute: ActivatedRoute,
+              private encryptDataService: EncryptService, private decryptDataService: DecryptService) { }
 
   @HostBinding ('class') classes = 'row';
 
@@ -20,6 +22,7 @@ export class InstructorFormComponent implements OnInit {
     last_name: '',
     phone: '',
     email: '',
+    stake: '',
     created_at: new Date(),
     modified_on: new Date(),
     status: ''
@@ -33,7 +36,6 @@ export class InstructorFormComponent implements OnInit {
       this.instructorService.getInstructor(params.id)
         .subscribe(
           res => {
-            console.log(res);
             this.instructor = res;
             this.edit = true;
           },
@@ -46,11 +48,13 @@ export class InstructorFormComponent implements OnInit {
     delete this.instructor.created_at;
     delete this.instructor.id;
     delete this.instructor.status;
+    delete this.instructor.modified_on;
+
+    this.encryptData();
 
     this.instructorService.saveInstructor(this.instructor)
       .subscribe(
         res => {
-          console.log(this.instructor);
           this.router.navigate(['instructors']);
         },
          err => console.log(err)
@@ -60,15 +64,21 @@ export class InstructorFormComponent implements OnInit {
   updateInstructor() {
     delete this.instructor.created_at;
     delete this.instructor.status;
+    delete this.instructor.modified_on;
 
     this.instructorService.updateInstructor(this.instructor.id, this.instructor)
         .subscribe(
           res => {
-            console.log(res);
             this.router.navigate(['instructors']);
           },
           err => console.log(err)
         );
   }
 
+  encryptData(){
+    this.instructor.name = this.encryptDataService.encryptData(this.instructor.name);
+    this.instructor.last_name = this.encryptDataService.encryptData(this.instructor.last_name);
+    this.instructor.phone = this.encryptDataService.encryptData(this.instructor.phone);
+    this.instructor.email = this.encryptDataService.encryptData(this.instructor.email);
+  }
 }

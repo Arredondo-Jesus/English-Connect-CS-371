@@ -5,6 +5,8 @@ import { ActivatedRoute, Router} from '@angular/router';
 import { StudentsService } from './../../services/students.service';
 import { Student } from './../../models/Student';
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import { DecryptService } from '../../services/decrypt.service';
+import { EncryptService } from '../../services/encrypt.service';
 
 @Component({
   selector: 'app-student-form',
@@ -16,29 +18,23 @@ export class StudentFormComponent implements OnInit {
 
   @HostBinding('class') classes = 'row';
 
-  wards: any = ['Garcia', 'Lincoln', 'Libramiento', 'Hacienda', 'Nogal', 'San Bernabe 1', 'San Bernabe 2', 'Frayle', 'Valle Verde' ];
-  ages: any = ['Over 18', 'Between 12 and 17'];
-  members: any = ['Member of the Church', 'Not member of the Church'];
-
   student: Student = {
     id: 0,
     name: '',
     last_name: '',
-    age: 'Over 18',
     email: '',
     phone: '',
+    stake: '',
     created_at: new Date(),
     status: '',
-    course_id: 0,
-    member: 'Member of the Church',
-    ward: 'Garcia'
+    course_id: 0
   };
 
   edit = false;
   registration = false;
 
   constructor(private studentsService: StudentsService, private router: Router, private activatedRoute: ActivatedRoute,
-              private http: HttpClient) { }
+              private http: HttpClient, private decryptService: DecryptService, private encryptService: EncryptService) { }
 
   ngOnInit() {
    this.getStudent();
@@ -50,8 +46,8 @@ export class StudentFormComponent implements OnInit {
       this.studentsService.getStudent(params.sid)
         .subscribe(
           res => {
-            console.log(res);
             this.student = res;
+            this.decryptData(this.student);
             this.edit = true;
           },
           err => console.log(err)
@@ -64,6 +60,8 @@ export class StudentFormComponent implements OnInit {
     delete this.student.id;
     delete this.student.status;
     this.student.course_id = this.activatedRoute.snapshot.params.cid;
+
+    this.encryptData();
 
     this.studentsService.saveStudent(this.student.course_id, this.student)
       .subscribe(
@@ -84,13 +82,30 @@ export class StudentFormComponent implements OnInit {
     delete this.student.created_at;
     delete this.student.status;
 
+    this.encryptData();
+
     this.studentsService.updateStudent(this.student.id, this.student)
         .subscribe(
           res => {
-            console.log(res);
             this.router.navigate(['students']);
           },
           err => console.log(err)
         );
+  }
+
+  decryptData(element: any) {
+    element.name = this.decryptService.decryptData(element.name);
+    element.last_name = this.decryptService.decryptData(element.last_name);
+    element.email = this.decryptService.decryptData(element.email);
+    element.phone = this.decryptService.decryptData(element.phone);
+    
+    return element;
+  }
+
+  encryptData() {
+    this.student.name = this.encryptService.encryptData(this.student.name);
+    this.student.last_name = this.encryptService.encryptData(this.student.last_name);
+    this.student.email = this.encryptService.encryptData(this.student.email);
+    this.student.phone = this.encryptService.encryptData(this.student.phone);
   }
 }

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { instructorController } from '../controllers/instructorController';
+import multer from '../libs/multer';
 
 class InstructorRoutes {
     public router: Router = Router();
@@ -14,6 +15,9 @@ class InstructorRoutes {
         this.router.post('/', instructorController.create);
         this.router.put('/delete/:id', instructorController.delete);
         this.router.put('/:id', instructorController.update);
+        this.router.delete('/uploaded', instructorController.deleteTable);
+        this.router.route('/upload')
+        .post(multer.single('csv'), instructorController.uploadCsv);
     }
 }
 

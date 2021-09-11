@@ -69,6 +69,13 @@ class UserController {
             res.json(user);
         });
     }
+    getUserByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const email = req.params.email;
+            const users = yield database2_1.default.query(`SELECT * FROM user u WHERE u.email = ?`, [email]);
+            res.json(users);
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database2_1.default.query('INSERT INTO user set ?', [req.body]);
@@ -140,6 +147,7 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             const { email } = req.params;
             const user = yield database2_1.default.query(`SELECT u.email,
+                                            u.secret,
                                             p.access,
                                             p.section,
                                             p.link,

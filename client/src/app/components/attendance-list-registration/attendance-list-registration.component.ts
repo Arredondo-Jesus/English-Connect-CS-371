@@ -6,6 +6,7 @@ import { AttendanceService } from '../../services/attendance.service';
 import { Student } from '../../models/Student';
 import { Course } from '../../models/Course';
 import { Attendance } from '../../models/Attendance';
+import { DecryptService } from '../../services/decrypt.service';
 
 @Component({
   selector: 'app-attendance-list-registration',
@@ -20,9 +21,11 @@ export class AttendanceListRegistrationComponent implements OnInit {
   options: any = [{option: '1'}];
   values: any = [{value: 'Yes'}, {value: 'No'}];
 
+  list : any = [];
   attendanceValues: any = [];
   attendanceList: any = [];
   filteredStudents: any = [];
+  encryptedAttendanceList: any = [];
   count = 0;
 
   private searchValue: string;
@@ -67,7 +70,7 @@ export class AttendanceListRegistrationComponent implements OnInit {
   }
 
   constructor(private attendanceService: AttendanceService, private router: Router, private activatedRoute: ActivatedRoute,
-              private datePipe: DatePipe) {
+              private datePipe: DatePipe, private decryptService: DecryptService) {
               this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd');
             }
 
@@ -99,9 +102,11 @@ export class AttendanceListRegistrationComponent implements OnInit {
     if (this.edit === false) {
       this.attendanceService.getGroup(this.course.id).subscribe(
         res => {
-          console.log(this.attendanceValues);
           this.studentList = res;
-          this.filteredStudents = this.studentList;
+          this.studentList.forEach(element => {
+            this.filteredStudents.push(this.decryptData(element));
+          });
+
           this.attendance.lesson = 1;
           this.count = this.studentList.length;
           for (const student of this.studentList) {
@@ -114,9 +119,10 @@ export class AttendanceListRegistrationComponent implements OnInit {
       this.attendanceService.getAttendanceByGroup(this.course.id, this.attendance.date).subscribe(
         res => {
           this.studentList = res;
-          this.filteredStudents = this.studentList;
+          this.studentList.forEach(element => {
+            this.filteredStudents.push(this.decryptData(element));
+          });
           this.count = this.filteredStudents.length;
-          console.log(res);
           this.today = this.datePipe.transform(this.studentList[0].date, 'yyyy-MM-dd');
           this.attendance.date = this.today;
           this.attendance.lesson = this.studentList[0].lesson;
@@ -130,10 +136,12 @@ export class AttendanceListRegistrationComponent implements OnInit {
   }
 
   getAttendanceByDate() {
+    const params = this.activatedRoute.snapshot.params;
+    this.course.id = params.id;
+
     this.attendanceService.geAttendanceByDate(this.course.id).subscribe(
       res => {
         this.attendanceList = res;
-        console.log(res);
         this.count = this.attendanceList.length;
       },
       err => console.log(err)
@@ -160,6 +168,19 @@ export class AttendanceListRegistrationComponent implements OnInit {
     }
   }
 
+  validateAttendanceRegistration() {
+    this.attendanceService.getAttendanceByGroup(this.course.id ,this.attendance.date)
+    .subscribe(res => {
+      this.list = res;
+      if (this.list.length > 0) {
+        alert('The attendance has already being registered for ' + this.attendance.date)
+      } else {
+        this.saveNewAttendanceList();
+      }
+    });
+  }
+
+ 
   saveNewAttendanceList() {
     delete this.attendance.created_at;
     delete this.attendance.id;
@@ -173,12 +194,11 @@ export class AttendanceListRegistrationComponent implements OnInit {
         res => {
           this.getGroup();
           this.router.navigate(['attendance/group/', this.course.id]);
-          console.log(attendance);
         },
-         err => console.log(err)
+          err => console.log(err)
       );
     }
-  }
+  } 
 
   getAttendanceAll() {
 
@@ -211,4 +231,10 @@ export class AttendanceListRegistrationComponent implements OnInit {
     console.log(this.attendanceValues);
   }
 
+  decryptData(element: any) {
+    element.name = this.decryptService.decryptData(element.name);
+    element.last_name = this.decryptService.decryptData(element.last_name);
+
+    return element;
+  }
 }

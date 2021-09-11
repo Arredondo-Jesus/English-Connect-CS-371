@@ -10,6 +10,9 @@ class LoginRoutes {
 
     config(): void {
         this.router.get('/', loginController.index);
+        this.router.get('/qr', loginController.generateMFAQRCode);
+        this.router.post('/verifytoken', loginController.verifyToken);
+        this.router.post('/secret/update',loginController.update)
     }
 }
 

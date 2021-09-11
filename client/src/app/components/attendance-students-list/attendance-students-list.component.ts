@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsService } from 'src/app/services/students.service';
+import { DecryptService } from '../../services/decrypt.service';
 
 @Component({
   selector: 'app-attendance-students-list',
@@ -8,7 +9,7 @@ import { StudentsService } from 'src/app/services/students.service';
 })
 export class AttendanceStudentsListComponent implements OnInit {
 
-  constructor(private studentService: StudentsService) { }
+  constructor(private studentService: StudentsService, private decryptService: DecryptService) { }
 
   attendanceStudents: any = [];
   filteredStudents: any = [];
@@ -23,7 +24,10 @@ export class AttendanceStudentsListComponent implements OnInit {
     this.studentService.attendancePerStudent().subscribe(
       res => {
         this.attendanceStudents = res;
-        this.filteredStudents = this.attendanceStudents;
+        //this.filteredStudents = this.attendanceStudents;
+        this.attendanceStudents.forEach(element => {
+          this.filteredStudents.push(this.decryptData(element));
+        });
         this.next = this.filteredStudents.slice();
         this.next.shift();
         this.count = this.filteredStudents.length;
@@ -31,6 +35,13 @@ export class AttendanceStudentsListComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  decryptData(element: any) {
+    element.instructor_name = this.decryptService.decryptData(element.instructor_name);
+    element.instructor_last_name = this.decryptService.decryptData(element.instructor_last_name);
+
+    return element;
   }
 
 }

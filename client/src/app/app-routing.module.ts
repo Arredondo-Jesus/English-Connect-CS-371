@@ -14,10 +14,11 @@ import { AttendanceListRegistrationComponent } from './components/attendance-lis
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AuthGuard } from '../app/guards/auth.guard';
-import { Resolver } from '../app/resolver';
 import { RegisterComponent } from './components/register/register.component';
 import { GraphsListComponent } from './components/graphs-list/graphs-list.component';
 import { AttendanceStudentsListComponent } from './components/attendance-students-list/attendance-students-list.component';
+import {ListInactiveComponent} from './components/list-inactive/list-inactive.component';
+
 
 const routes: Routes = [
   {
@@ -94,7 +95,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'instructor/edit/:id',
+    path: 'instructor/:id',
     component: InstructorFormComponent,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard]
@@ -108,6 +109,12 @@ const routes: Routes = [
   {
     path: 'students',
     component: StudentListComponent,
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'students/inactive',
+    component: ListInactiveComponent,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard]
   },

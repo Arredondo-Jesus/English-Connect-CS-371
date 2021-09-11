@@ -19,7 +19,7 @@
     <div class="col-md-1 text-center">{{course.time}}</div>
     <div class="col-md-2 text-center">{{course.building}}</div>
     <div [routerLink]="['/students/group', course.id]" class="col-md-2 text-center">{{course.count}}</div>
-    <div class="col-md-2 text-center">{{course.instructorName}} {{course.last_name}}</div>
+    <div class="col-md-2 text-center">{{course.instructor_name}} {{course.instructor_last_name}}</div>
     <div [routerLink]="['/student/add', course.id]" class="col-md-1 text-center">
       <button class="btn btn-link p-0"><i class="fas fa-user-plus"></i></button>
     </div>

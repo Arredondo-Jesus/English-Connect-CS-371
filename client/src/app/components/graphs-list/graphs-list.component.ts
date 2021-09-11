@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsService } from '../../services/students.service';
+import { DecryptService } from '../../services/decrypt.service';
 
 @Component({
   selector: 'app-graphs-list',
@@ -22,8 +23,8 @@ export class GraphsListComponent implements OnInit {
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
-    {data: this.barChartData1, label: 'Attended'},
-    {data: this.barChartData2, label: 'Not attended'},
+    {data: this.barChartData1, label: 'Attended', stack: 'a'},
+    {data: this.barChartData2, label: 'Not attended', stack: 'a'}
   ];
   public barChartColor: any = [
     {backgroundColor: 'rgba(30, 169, 224, 0.8)'},
@@ -46,7 +47,7 @@ export class GraphsListComponent implements OnInit {
   public pieChartType = 'pie';
 
 
-  constructor(private studentService: StudentsService) { }
+  constructor(private studentService: StudentsService, private decryptService: DecryptService) { }
 
   ngOnInit() {
     this.countPerWard();
@@ -57,12 +58,12 @@ export class GraphsListComponent implements OnInit {
     this.studentService.countPerWard().subscribe(
       res => {
         this.students = res;
-        this.filteredStudents = this.students;
+        //this.filteredStudents = this.students;
         this.count = this.filteredStudents.length;
 
-        this.filteredStudents.forEach(element => {
+        this.students.forEach(element => {
           this.pieChartData.push(element.Total);
-          this.pieChartLabels.push(element.ward);
+          this.pieChartLabels.push(element.stake);
         });
       },
       err => console.log(err)
@@ -70,19 +71,30 @@ export class GraphsListComponent implements OnInit {
   }
 
   attendancePerWard() {
+    this.filteredStudents = [];
     this.studentService.attendancePerWard().subscribe(
       res => {
         this.students = res;
-        this.filteredStudents = this.students;
+        //this.filteredStudents = this.students;
+        this.students.forEach(element => {
+          this.filteredStudents.push(this.decryptData(element))
+        });
         this.count = this.filteredStudents.length;
 
         this.filteredStudents.forEach(element => {
           this.barChartData1.push(element.Yes);
           this.barChartData2.push(element.No);
-          this.barChartLabels.push(element.ward);
+          this.barChartLabels.push(element.instructor_name + ' ' + element.instructor_last_name);
         });
       },
       err => console.log(err)
     );
+  }
+
+  decryptData(element: any) {
+    element.instructor_name = this.decryptService.decryptData(element.instructor_name);
+    element.instructor_last_name = this.decryptService.decryptData(element.instructor_last_name);
+
+    return element;
   }
 }

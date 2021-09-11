@@ -1,4 +1,8 @@
-server/src/keys.ts
-server/src/Keys2.ts
-server/src/environment.ts
-server/public
+/server/src/keys.ts
+/server/src/Keys2.ts
+/server/src/environment.ts
+/server/public
+/server/.env
+/server/build
+/client/environments/environment.ts
+/client/environments/environment.prod.ts

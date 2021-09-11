@@ -2,18 +2,17 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 import indexRoutes from './routes/indexRoutes';
 import courseRoutes from './routes/courseRoutes';
 import instructorRoutes from './routes/instructorRoutes';
 import studentRoutes from './routes/studentRoutes';
 import attendanceRoutes from './routes/attendanceRoutes';
 import  userRoutes from './routes/userRoutes';
-import multer from 'multer';
-
-
+import loginRoutes from './routes/loginRoutes';
 class Server {
-
-    
     
     public app: Application;
     
@@ -36,15 +35,14 @@ class Server {
         
         // configure cors
         this.app.use((req, res, next) => {
-            res.header('Access-Control-Allow-Origin', '*');
-            res.header('Access-Control-Allow-Headers', 'Origine, X-Requested-With, Content-Type, Accept, Authorization');
-            if (req.method === 'OPTIONS') {
-                res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, PATCH, DELETE');
-                res.status(200).json({});
-            }
+            res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+            res.header(
+              "Access-Control-Allow-Headers",
+              "Origin, X-Requested-With, Content-Type, Accept"
+            );
             next();
-        });
-        }
+          });
+    }
         
     routes(): void {
         this.app.use('/', indexRoutes);
@@ -53,6 +51,7 @@ class Server {
         this.app.use('/api/instructors', instructorRoutes);
         this.app.use('/api/attendance', attendanceRoutes);
         this.app.use('/api/users', userRoutes);
+        this.app.use('/api/login', loginRoutes);
     }
 
     start(): void {

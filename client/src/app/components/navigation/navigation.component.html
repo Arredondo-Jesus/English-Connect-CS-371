@@ -6,7 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="permissions[0].access === 1">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Courses
           </a>
@@ -18,7 +18,7 @@
             </li>
           </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="permissions[2].access === 1">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Instructors
           </a>
@@ -30,7 +30,7 @@
             </li>
           </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="permissions[4].access === 1">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Students
           </a>
@@ -42,7 +42,7 @@
             </li>
           </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="permissions[5].access === 1">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Users
           </a>
@@ -54,7 +54,7 @@
             </li>
           </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="permissions[7].access === 1">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Statistics
           </a>

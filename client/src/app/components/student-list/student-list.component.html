@@ -7,18 +7,35 @@
   <div class="row d-flex flex-row card p-4" id="search">
     <div class="col-md-6">
       <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchName" placeholder="Name"></div>
-      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchAge" placeholder="Age"></div>
       <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchEmail" placeholder="Email"></div>
-      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchPhone" placeholder="Phone"></div>
     </div>
     <div class="col-md-6">
-      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchMember" placeholder="Member"></div>
-      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchWard" placeholder="Ward"></div>
-      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchStatus" placeholder="Status"></div>
+      <div class="col-md-9"><input class="form-control" type="search" name="search" [(ngModel)]="searchPhone" placeholder="Phone"></div>
     </div>
+    
+    <div class="container col-md-12 p-3">
+      <button class="btn btn-primary" (click)="getStudents()">Reset Filters</button>
 
-    <div class="container col-md-2">
-      <button class="btn btn-primary" (click)="getStudents()">Reset</button>
+      <input type="file" class="d-none" (change)="onFileChange($event)" #uploadFile>
+
+      <button class="btn btn-danger m-4"
+        (click)="deleteStudentList()"
+        (disabled)="!file"
+        *ngIf="permissions[0].id === 1">
+        Delete
+      </button>
+
+      <button class="btn btn-warning m-4" 
+              (click)="uploadFile.click()"
+              *ngIf="permissions[0].id === 1">
+        Select File
+      </button>
+
+      <button class="btn btn-success"
+              (click)="onFileUpload()"
+              *ngIf="permissions[0].id === 1">
+        Upload
+      </button>
     </div>
 
   </div>
@@ -26,30 +43,24 @@
 
 
 <div class="row bg-primary d-flex flex-row card-header">
-  <div class="col-md-2 text-white text-center">Name</div>
-  <div class="col-md-1 text-white text-center">Age</div>
-  <div class="col-md-2 text-white text-center">Email</div>
-  <div class="col-md-1 text-white text-center">Phone</div>
-  <div class="col-md-1 text-white text-center">Is member?</div>
-  <div class="col-md-1 text-white text-center">Ward</div>
+  <div class="col-md-3 text-white text-center">Name</div>
+  <div class="col-md-3 text-white text-center">Email</div>
+  <div class="col-md-2 text-white text-center">Phone</div>
   <div class="col-md-1 text-white text-center">% of Attendance</div>
 </div>
 
 <div id="table" class="row d-flex flex-row card p-1" *ngFor="let student of filteredStudents let i = index">
-  <div class="col-md-2 text-center">{{student.name}} {{student.last_name}}</div>
-  <div class="col-md-1 text-center">{{student.age}}</div>
-  <div class="col-md-2 text-center">{{student.email}}</div>
-  <div class="col-md-1 text-center">{{student.phone}}</div>
-  <div class="col-md-1 text-center">{{student.member}}</div>
-  <div class="col-md-1 text-center">{{student.ward}}</div>
-  <div class="col-md-1 text-center">{{(student.yes / student.total) * 100 | number: '1.0-0'}}{{'%'}} {{student.yes > 0 ? student.yes : 0}}{{'/'}}{{student.total}} </div>
+  <div class="col-md-3 text-center">{{student.name}} {{student.last_name}}</div>
+  <div class="col-md-3 text-center">{{student.email}}</div>
+  <div class="col-md-2 text-center">{{student.phone}}</div>
+  <div class="col-md-1 text-center">{{(student.yes + student.no) > 0 ? (student.yes / (student.yes + student.no)) * 100 : 0 | number: '1.0-0'}}{{'%'}} {{student.yes > 0 ? student.yes : 0}}{{'/'}}{{student.yes + student.no}} </div>
 
-  <div class="text-center">
-    <button [routerLink]="['/student/edit', student.id]" class="btn btn-success p-2" title="Edit">
+  <div class="text-center" *ngIf="permissions[0].id == 1">
+    <button [routerLink]="['/student/edit/', student.id]" class="btn btn-success p-2" title="Edit">
       <i class="fas fa-edit"> Edit</i>
     </button>
   </div>
-  <div class="text-center">
+  <div class="text-center" *ngIf="permissions[0].id == 1">
     <button class="btn btn-danger p-2" (click)="userDeletionPreference() ? deleteStudent(student.id) : delete = false" title="Delete">
       <i class="fas fa-trash"> Delete</i>
     </button>
