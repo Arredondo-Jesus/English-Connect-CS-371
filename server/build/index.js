@@ -14,15 +14,15 @@ const attendanceRoutes_1 = __importDefault(require("./routes/attendanceRoutes"))
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 class Server {
     constructor() {
-        this.app = express_1.default();
+        this.app = (0, express_1.default)();
         this.config();
         this.routes();
     }
     config() {
         // configure server
         this.app.set('port', process.env.PORT || 3000);
-        this.app.use(morgan_1.default('dev'));
-        this.app.use(cors_1.default());
+        this.app.use((0, morgan_1.default)('dev'));
+        this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.static('./public'));
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
