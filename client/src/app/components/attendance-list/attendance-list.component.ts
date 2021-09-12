@@ -26,7 +26,7 @@ export class AttendanceListComponent implements OnInit {
   };
 
   course: Course = {
-    id: 0
+    id: ''
   };
 
   constructor(private attendanceService: AttendanceService, private router: Router, private activatedRoute: ActivatedRoute,

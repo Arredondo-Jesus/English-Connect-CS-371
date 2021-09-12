@@ -10,6 +10,6 @@ export const environment = {
     appId: "1:1008276701949:web:5af8a8fd63e924b5d33494"
   },
   env: {
-    HOST: "http://localhost:3000/api"
+    HOST: "/api"
   }
 };

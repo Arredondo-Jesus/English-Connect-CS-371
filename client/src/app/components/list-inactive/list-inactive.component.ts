@@ -33,11 +33,11 @@ export class ListInactiveComponent implements OnInit {
     email: '',
     stake: '',
     status: '',
-    course_id: 0
+    course_id: ''
   }
 
   course: Course = {
-    id: 0
+    id: ''
   };
 
   ngOnInit() {

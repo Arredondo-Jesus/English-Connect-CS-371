@@ -20,7 +20,7 @@ export class LoginFormComponent implements OnInit {
   temp: any = [];
 
   course: Course = {
-    id: 0,
+    id: '',
     status: 'inactive',
     count: 0
   };

@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   currentYear = new Date().getFullYear().toString();
 
   course: Course = {
-    id: 0,
+    id: '',
     name: '',
     generation: '',
     status: 'inactive',

@@ -31,7 +31,7 @@ export class StudentListComponent implements OnInit {
   };
 
   course: Course = {
-    id: 0
+    id: ''
   };
 
   delete = false;

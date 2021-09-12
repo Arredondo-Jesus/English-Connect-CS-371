@@ -26,7 +26,7 @@ export class StudentListGroupComponent implements OnInit {
     status: 'inactive'
   };
   course: Course = {
-    id: 0
+    id: ''
   };
 
   attendance: Attendance = {
