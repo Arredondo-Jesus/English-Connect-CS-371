@@ -37,14 +37,14 @@
           Email format not valid eg. test@test.com
         </div>
         <div class="form-group">
-            <input type="text" name="phone" #phone="ngModel" pattern="[0-9]{10}"
+            <input type="text" name="phone" #phone="ngModel" pattern="^[0-9]*$"
             required placeholder="Student's phone number" [(ngModel)]="student.phone" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="phone.value === '' && phone.dirty">
             Required Field
         </div>
         <div class="alert alert-danger" *ngIf="phone.invalid && phone.dirty && phone.value !== ''">
-            Only 10 digits are allowed
+            Only numbers are allowed
         </div>
         <div class="form-group">
           <input type="text" name="stake" #stake="ngModel"placeholder="Stake" pattern="^[a-zA-Z\s]*$"
@@ -56,8 +56,20 @@
       <div class="alert alert-danger" *ngIf="stake.invalid && stake.dirty && name.value !== ''">
           Only letters are allowed
       </div>
+      <div class="form-group">
+        <input type="text" name="course_id" #course_id="ngModel"placeholder="Course ID" pattern="^G[0-9]-[0-9]*$"
+      required [(ngModel)]="student.course_id" class="form-control" autofocus>
+    </div>
+    <div class="alert alert-danger" *ngIf="stake.value === '' && stake.dirty">
+        Required Field
+    </div>
+    <div class="alert alert-danger" *ngIf="stake.invalid && stake.dirty && name.value !== ''">
+        Only letters and numbers are allowed
+    </div>
+
+
         <button class="btn btn-warning btn-block" (click)="edit ? updateStudent() : saveNewStudent()"
-        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || !stake.valid">
+        [disabled]="!name.valid || !lastName.valid || !email.valid || !phone.valid || !stake.valid || course.valid">
           <i class="fas fa-save"></i> Save
         </button>
       </form>

@@ -8,7 +8,7 @@ export interface Student {
   created_at?: Date;
   modified_on?: Date;
   status?: string;
-  course_id?: number;
+  course_id?: string;
   course_code?: number;
   registration?: boolean;
   percentage?: number;

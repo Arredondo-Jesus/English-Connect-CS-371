@@ -206,7 +206,7 @@ class StudentController {
             req.body.id = req.body.name.substring(0, 1) + req.body.last_name.substring(0, 1) + req.body.email.substring(0, 2) + req.body.stake.replace(/\s+/g, '');
             req.body.id = req.body.id.toUpperCase();
             yield database_1.default.query(`INSERT INTO student 
-        set id = ? 
+        set id = ?, 
         name = ?,
         last_name = ?,
         phone = ?,

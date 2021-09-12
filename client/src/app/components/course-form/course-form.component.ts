@@ -24,7 +24,7 @@ export class CourseFormComponent implements OnInit {
   days: any = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
 
   course: Course = {
-    id: 0,
+    id: '',
     level: 1,
     generation: '',
     day_1: 'Lunes',

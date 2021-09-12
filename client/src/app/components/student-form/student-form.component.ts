@@ -27,7 +27,7 @@ export class StudentFormComponent implements OnInit {
     stake: '',
     created_at: new Date(),
     status: '',
-    course_id: 0
+    course_id: ''
   };
 
   edit = false;

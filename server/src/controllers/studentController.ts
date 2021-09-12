@@ -176,7 +176,7 @@ class StudentController {
         req.body.id = req.body.id.toUpperCase();
 
         await pool.query(`INSERT INTO student 
-        set id = ? 
+        set id = ?, 
         name = ?,
         last_name = ?,
         phone = ?,

@@ -36,7 +36,7 @@ export class CourseListComponent implements OnInit {
   private searchValue: string;
 
   course: Course = {
-    id: 0,
+    id: '',
     name: '',
     generation: '',
     status: 'inactive',
@@ -203,7 +203,7 @@ export class CourseListComponent implements OnInit {
     );
   }
 
-  deleteCourse(id: number) {
+  deleteCourse(id: string) {
     delete this.course.count;
 
     this.course.id = id;

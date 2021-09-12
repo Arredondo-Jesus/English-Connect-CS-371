@@ -47,7 +47,7 @@ export class AttendanceListRegistrationComponent implements OnInit {
   };
 
   course: Course = {
-    id: 0,
+    id: '',
     status: ''
   };
 
