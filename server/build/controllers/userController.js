@@ -147,7 +147,6 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             const { email } = req.params;
             const user = yield database2_1.default.query(`SELECT u.email,
-                                            u.secret,
                                             p.access,
                                             p.section,
                                             p.link,

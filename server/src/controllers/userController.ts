@@ -108,7 +108,6 @@ class UserController {
     public async getUserPermissions(req: Request, res: Response) {
       const { email } = req.params;
       const user = await pool.query(`SELECT u.email,
-                                            u.secret,
                                             p.access,
                                             p.section,
                                             p.link,
