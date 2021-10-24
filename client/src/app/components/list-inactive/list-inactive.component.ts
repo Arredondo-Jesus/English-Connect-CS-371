@@ -23,6 +23,7 @@ export class ListInactiveComponent implements OnInit {
   temp: any = [];
   permissions: any = [];
 
+  private searchValue: string;
   count = 0;
 
   inactiveStudent: Student = {
@@ -40,6 +41,51 @@ export class ListInactiveComponent implements OnInit {
     id: ''
   };
 
+  get seachName(): string {
+    return this.searchValue;
+  }
+
+  set searchName(value: string) {
+    this.searchValue = value;
+    this.filteredStudents = this.filterName(value);
+    this.count = this.filteredStudents.length;
+  }
+
+  filterName(searchString: string) {
+    return this.filteredStudents.filter(student =>
+      student.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
+
+  get seachEmail(): string {
+    return this.searchValue;
+  }
+
+  set searchEmail(value: string) {
+    this.searchValue = value;
+    this.filteredStudents = this.filterEmail(value);
+    this.count = this.filteredStudents.length;
+  }
+
+  filterEmail(searchString: string) {
+    return this.filteredStudents.filter(student =>
+      student.email.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
+
+  get seachPhone(): string {
+    return this.searchValue;
+  }
+
+  set searchPhone(value: string) {
+    this.searchValue = value;
+    this.filteredStudents = this.filterPhone(value);
+    this.count = this.filteredStudents.length;
+  }
+
+  filterPhone(searchString: string) {
+    return this.filteredStudents.filter(student =>
+      student.phone.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
+
   ngOnInit() {
     this.getPermissions(this.afAuth.auth.currentUser.email);
     this.getInactiveStudents();
@@ -48,7 +94,7 @@ export class ListInactiveComponent implements OnInit {
   getStudents() {
     this.filteredStudents = [];
     
-    this.studentService.getStudents().subscribe(
+    this.studentService.getInactiveStudents().subscribe(
       res => {
         this.temp = res;
         this.inactiveStudents = this.temp;

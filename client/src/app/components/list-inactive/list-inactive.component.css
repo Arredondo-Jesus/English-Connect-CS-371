@@ -4,7 +4,6 @@
 
 input:focus {
   width: 100%;
-  background-color: #fbf6ac;
   transition: ease-in-out, width 0.35s ease-in-out;
 }
 
